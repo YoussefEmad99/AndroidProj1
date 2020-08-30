@@ -9,5 +9,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         println("hello losers")
+        println("Hello winners")
     }
 }

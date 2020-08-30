@@ -7,17 +7,13 @@ interface APIInterface {
 
     @GET("/movie/popular?")
     fun getMovies(
-        @Query("api_key") apiKey: String,
-        @Query("original_title") movieTitle: String,
-        @Query ("popularity") popularity: Double,
-        @Query("backdropPath") backdropPath: String
+        @Query("api_key") apiKey: String
     ) : Call<APIResponse>
 
     @GET("/movie/{movie_id}/images?")
     fun getMovieImage(
-        @Query("movie_id") movie_id: String,
-        @Query("poster_path") imageURL: String
+        @Query("api_key") apiKey: String,
+        @Query("movie_id") movie_id: String
     ) : Call<APIResponse>
-
 
 }

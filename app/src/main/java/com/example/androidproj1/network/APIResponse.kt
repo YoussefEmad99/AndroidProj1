@@ -8,6 +8,12 @@ data class APIResponse(
 
     val popularity: Double,
 
-    val backdropPath: String
+    val backdropPath: String,
+
+    @SerializedName("poster_path")
+    val imageURL : String,
+
+    @SerializedName("id")
+    val movie_id: String
 
 )

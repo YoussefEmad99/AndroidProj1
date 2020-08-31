@@ -10,7 +10,7 @@ object RetrofitClient {
     fun getClient(): Retrofit {
         if (instance == null)
             instance = Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(OkHttpClient().newBuilder().build())
                 .build()

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), OnMovieItemClickListener {
 //                    }
 //
 //                })
-        movieRecycler.LayoutManager = LinearLayoutManager(this)
+        movieRecycler.layoutManager = LinearLayoutManager(this)
         movieRecycler.addItemDecoration(DividerItemDecoration(this,1))
         movieRecycler.adapter = MovieAdapter(movielist,this)
     }

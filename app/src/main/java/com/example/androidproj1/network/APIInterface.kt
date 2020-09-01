@@ -10,11 +10,4 @@ interface APIInterface {
     fun getMovies(
         @Query("api_key") apiKey: String
     ) : Call<APIResponse>
-
-    @GET("movie/{movie_id}/images?")
-    fun getMovieImage(
-        @Path("movie_id") movie_id: String,
-        @Query("api_key") apiKey: String
-    ) : Call<APIImageResponse>
-
 }

@@ -32,8 +32,9 @@ class MovieViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
 
     fun initialize(item: Movies, action:OnMovieItemClickListener){
         movieName.text = item.name
-        movieDescription.text = item.description
-        movieImage.setImageResource(item.image.toInt()) //ma3rfsh hal hana5od string numeric wala hayeb2a fih kalam fa 3mltha to int le7ad ma3rf
+        movieDescription.text = item.popularity.toString()
+        movieImage.setImageResource(item.image.toInt())
+        //ma3rfsh hal hana5od string numeric wala hayeb2a fih kalam fa 3mltha to int le7ad ma3rf
 
         itemView.setOnClickListener{
             action.onItemClick(item,adapterPosition)

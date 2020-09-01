@@ -2,7 +2,10 @@ package com.example.androidproj1.network
 
 import com.google.gson.annotations.SerializedName
 
-data class APIResponse(
+data class APIResponse(@SerializedName("results")
+                       val movies : List<Movie>)
+
+data class Movie(
     @SerializedName("original_title")
     val movieName: String,
 
@@ -15,5 +18,4 @@ data class APIResponse(
 
     @SerializedName("id")
     val movie_id: String
-
 )

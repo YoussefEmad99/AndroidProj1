@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), OnMovieItemClickListener {
                     ) {
                         Log.d("MainActivity", response.body()?.movies?.first().toString())
 //                        Log.d("MainActivity", response.body()?.movies?.first().toString())
-                        for (i in 0..response.body()!!.movies.size) {
+                        for (i in response.body()!!.movies.indices) {
                             addMovies((response.body()!!.movies[i].movieName),
                                 (response.body()!!.movies[i].popularity),
                                 (response.body()!!.movies[i].imageURL))

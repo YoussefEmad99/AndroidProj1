@@ -17,7 +17,7 @@ object MovieRepository {
 
     private lateinit var movieData: APIResponse
 
-    fun requestMovieData(callback: MovieCallback, isForcedReload: Boolean) {
+    fun requestMovieData(callback: MovieCallback, isForcedReload: Boolean = false) {
 
         if (this::movieData.isInitialized && !isForcedReload) {
             callback.onMovieReady(movieData)

@@ -40,7 +40,7 @@ object MovieRepository {
 
                 override fun onFailure(call: Call<APIResponse>, t: Throwable) {
                     t.printStackTrace()
-                    val msg = "Error while getting weather data"
+                    val msg = "Error while getting movie data"
                     callback.onMovieLoadingError(msg)
                 }
             })

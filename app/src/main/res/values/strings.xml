@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">AndroidProj1</string>
+
+    <string name="good_movie">Good movie</string>
+
+    <string name="Popularity">Popular</string>
+
+    <string name="movie_streaming_app">Movie Streaming App</string>
+
+    <string name="popularity">Popularity</string>
+
+    <string name="stay_updated_with_the_most_popular_movies">Stay updated with the most popular movies</string>
+
+    <string name="my_movies">My Movies</string>
+
+    <string name="go">GO!</string>
+
+    <string name="movies_list">Movies List</string>
+
+    <string name="movie_poster">Movie Poster</string>
+
+    <string name="title">Title</string>
+
+    <string name="refresh_movies">Refresh Movies</string>
+    <string name="movies">Movies</string>
 </resources>

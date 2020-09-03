@@ -1,6 +1,7 @@
 package com.example.androidproj1
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -23,14 +24,17 @@ class MainActivity : AppCompatActivity(), MovieRepository.MovieCallback {
 
         fab.setOnClickListener {
             MovieRepository.requestMovieData(this, true)
+            loading_bar.visibility = View.VISIBLE
         }
     }
 
     override fun onMovieReady(movies: APIResponse) {
         movieRecycler.adapter = MovieAdapter(movies.movies)
+        loading_bar.visibility = View.GONE
     }
 
     override fun onMovieLoadingError(errorMsg: String) {
         Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show()
+        loading_bar.visibility = View.GONE
     }
 }

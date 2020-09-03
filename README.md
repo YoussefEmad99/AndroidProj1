@@ -5,13 +5,13 @@ Members:
 
 Youssef Emad Saad
 
-Mahmoud Khaled (hackar)
+Mahmoud Khaled Ahmed Mohamed
 
-Noor
+Noor El-Din Walid
 
 Ahmed AbdelFattah
 
 Rana Tarek
 
-Daniella 
+Daniella George
 

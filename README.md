@@ -15,3 +15,4 @@ Rana Tarek
 
 Daniella George
 
+Note: The App .apk file is uploaded in the repository as "base.apk"

@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/movieimage"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        tools:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:id="@+id/movieimage"
-            tools:src = ""
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="10dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/moviename"
-                android:layout_margin="8dp"
-                android:textSize="28dp"
-                tools:text = "Titanic"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/moviedescription"
-                android:layout_margin="8dp"
-                android:textSize="16dp"
-                tools:text = "description to be written "/>
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/moviename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="24sp"
+            tools:text="Titanic" />
+
+        <TextView
+            android:id="@+id/moviedescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            tools:text="description to be written " />
+    </LinearLayout>
 </LinearLayout>

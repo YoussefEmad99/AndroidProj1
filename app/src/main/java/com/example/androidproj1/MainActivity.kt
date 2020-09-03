@@ -3,10 +3,8 @@ package com.example.androidproj1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androidproj1.databinding.ActivityMainBinding
 import com.example.androidproj1.network.APIResponse
 import com.example.androidproj1.recyclerview.MovieAdapter
 import com.example.androidproj1.repository.MovieRepository
@@ -14,12 +12,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MovieRepository.MovieCallback {
 
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
         movieRecycler.layoutManager = LinearLayoutManager(this)
         movieRecycler.addItemDecoration(DividerItemDecoration(this,1))

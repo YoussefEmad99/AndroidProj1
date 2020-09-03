@@ -38,6 +38,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun initialize(item: Movie) {
         movieName.text = item.movieName
         movieDescription.text = item.popularity.toString()
-        Picasso.get().load("$imageBaseUrl${item.imageURL}").into(movieImage)
+        Picasso.get().load("$imageBaseUrl${item.imageURL}")
+            .into(movieImage)
     }
 }

@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity(), MovieRepository.MovieCallback {
         movieRecycler.layoutManager = LinearLayoutManager(this)
         movieRecycler.addItemDecoration(DividerItemDecoration(this,1))
         MovieRepository.requestMovieData(this)
+
+        fab.setOnClickListener {
+            MovieRepository.requestMovieData(this, true)
+        }
     }
 
     override fun onMovieReady(movies: APIResponse) {

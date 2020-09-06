@@ -19,10 +19,7 @@ object MovieRepository {
 
     fun requestMovieData(callback: MovieCallback, isForcedReload: Boolean = false) {
 
-        if (this::movieData.isInitialized && !isForcedReload) {
-            callback.onMovieReady(movieData)
-            return
-        }
+
 
         apiServices.getMovies(apiKey)
             .enqueue(object : Callback<APIResponse> {

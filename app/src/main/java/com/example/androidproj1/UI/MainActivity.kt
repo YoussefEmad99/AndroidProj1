@@ -1,10 +1,11 @@
-package com.example.androidproj1
+package com.example.androidproj1.UI
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidproj1.R
 import com.example.androidproj1.network.APIResponse
 import com.example.androidproj1.recyclerview.MovieAdapter
 import com.example.androidproj1.repository.MovieRepository

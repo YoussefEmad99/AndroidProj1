@@ -10,6 +10,8 @@
         android:id="@+id/movieRecycler"
         android:layout_width="422dp"
         android:layout_height="637dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

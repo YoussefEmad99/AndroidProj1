@@ -1,37 +1,49 @@
 package com.example.androidproj1.UI
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidproj1.R
 import com.example.androidproj1.network.APIResponse
 import com.example.androidproj1.recyclerview.MovieAdapter
-import com.example.androidproj1.repository.MovieRepository
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MovieRepository.MovieCallback {
+class MainActivity : AppCompatActivity() {
 
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        movieRecycler.layoutManager = LinearLayoutManager(this)
+        viewModel.movieLiveData.observe(this, Observer {
+            bindMovieData(it)
+        })
+
+        viewModel.onError.observe(this, Observer {
+            handlingErr(it)
+        })
+
+        viewModel.loadMovie()
+
         movieRecycler.addItemDecoration(DividerItemDecoration(this,1))
-        MovieRepository.requestMovieData(this)
+
+    }
+
+    //Check the function of the button
+    private fun bindMovieData (moviesResponse: APIResponse) {
+        movieRecycler.adapter = MovieAdapter(moviesResponse.movies)
 
         fab.setOnClickListener {
-            MovieRepository.requestMovieData(this, true)
+            viewModel.loadMovie(true)
         }
     }
 
-    override fun onMovieReady(movies: APIResponse) {
-        movieRecycler.adapter = MovieAdapter(movies.movies)
+    private fun handlingErr(errMsg: String){
+        Toast.makeText(this, errMsg, Toast.LENGTH_LONG).show()
     }
 
-    override fun onMovieLoadingError(errorMsg: String) {
-        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show()
-    }
 }

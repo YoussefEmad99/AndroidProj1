@@ -19,8 +19,6 @@ object MovieRepository {
 
     fun requestMovieData(callback: MovieCallback, isForcedReload: Boolean = false) {
 
-
-
         apiServices.getMovies(apiKey)
             .enqueue(object : Callback<APIResponse> {
                 override fun onResponse(

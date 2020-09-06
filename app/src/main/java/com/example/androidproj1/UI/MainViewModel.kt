@@ -10,9 +10,9 @@ class MainViewModel :ViewModel(), MovieRepository.MovieCallback {
 
     private lateinit var movieData: APIResponse
 
-
     private val _movieLiveData : MutableLiveData<APIResponse>
             by lazy { MutableLiveData<APIResponse>() }
+
     val movieLiveData: LiveData<APIResponse>
         get() = _movieLiveData
 
@@ -21,11 +21,13 @@ class MainViewModel :ViewModel(), MovieRepository.MovieCallback {
     val onError: LiveData<String>
         get() = _onError
 
+    //Check this one
     fun loadMovie(isForcedReload: Boolean = false){
         if (this::movieData.isInitialized && !isForcedReload ) {
             _movieLiveData.value= movieData
             return
         }
+
         MovieRepository.requestMovieData(this)
 
     }

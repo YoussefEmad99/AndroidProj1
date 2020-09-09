@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Movie_Table")
-data class Movie(
+data class UIMovie(
     val title: String,
     val popularity: Double,
     val imgPath: String,

@@ -3,17 +3,17 @@ package com.example.androidproj1.UI
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.androidproj1.network.APIResponse
+import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.repository.MovieRepository
 
 class MainViewModel :ViewModel(), MovieRepository.MovieCallback {
 
-    private lateinit var movieData: APIResponse
+    private lateinit var movieData: List<UIMovie>
 
-    private val _movieLiveData : MutableLiveData<APIResponse>
-            by lazy { MutableLiveData<APIResponse>() }
+    private val _movieLiveData : MutableLiveData<List<UIMovie>>
+            by lazy { MutableLiveData<List<UIMovie>>() }
 
-    val movieLiveData: LiveData<APIResponse>
+    val movieLiveData: LiveData<List<UIMovie>>
         get() = _movieLiveData
 
     private val _onError: MutableLiveData<String>
@@ -29,10 +29,9 @@ class MainViewModel :ViewModel(), MovieRepository.MovieCallback {
         }
 
         MovieRepository.requestMovieData(this)
-
     }
 
-    override fun onMovieReady(movies: APIResponse) {
+    override fun onMovieReady(movies: List<UIMovie>) {
         movieData = movies
         _movieLiveData.value = movieData
 
@@ -40,7 +39,6 @@ class MainViewModel :ViewModel(), MovieRepository.MovieCallback {
 
     override fun onMovieLoadingError(errorMsg: String) {
         _onError.value = errorMsg
-
     }
 
 }

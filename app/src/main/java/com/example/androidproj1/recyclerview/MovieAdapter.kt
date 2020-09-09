@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
-import com.example.androidproj1.network.Movie
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class MovieAdapter(var items: List<Movie>) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieAdapter(var items: List<UIMovie>) : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun getItemCount(): Int {
         return items.size
@@ -37,10 +37,10 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var movieImage: ImageView = itemView.movieimage
     var progressBar: ProgressBar = itemView.progressBar
 
-    fun initialize(item: Movie) {
-        movieName.text = item.movieName
+    fun initialize(item: UIMovie) {
+        movieName.text = item.title
         movieDescription.text = "${item.popularity * 10}%"
-        Picasso.get().load("$imageBaseUrl${item.imageURL}")
+        Picasso.get().load("$imageBaseUrl${item.imgPath}")
             .into(movieImage)
         progressBar.progress = (item.popularity*10).toInt()
     }

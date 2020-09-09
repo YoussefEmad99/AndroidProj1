@@ -1,13 +1,13 @@
 package com.example.androidproj1.repository
 
-import com.example.androidproj1.Models.UI.Movie
+import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.network.APIResponse
 
 object MovieMapper {
 
-    fun mapToMovieList(response: APIResponse): List<Movie>{
+    fun mapToMovieList(response: APIResponse): List<UIMovie>{
         return response.movies.map {
-            Movie(it.movieName, it.popularity, it.imageURL)
+            UIMovie(it.movieName, it.popularity, it.imageURL)
         }
     }
 }

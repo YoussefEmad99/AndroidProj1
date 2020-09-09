@@ -9,9 +9,10 @@ import com.example.androidproj1.Models.UI.Movie
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addWeather(movie:Movie)
+    fun addMovie(movie:Movie)
 
     @Query("SELECT * FROM Movie_Table")
-    fun getWeather(): Movie
+    fun getMovie(): List<Movie>
+
 
 }

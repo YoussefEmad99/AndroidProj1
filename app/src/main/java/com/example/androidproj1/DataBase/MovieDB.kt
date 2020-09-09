@@ -8,7 +8,7 @@ import com.example.androidproj1.Models.UI.Movie
 
 @Database(entities = [Movie::class],version = 1, exportSchema = false)
 abstract class MovieDB: RoomDatabase() {
-    abstract fun getMovieDao(): MovieDao
+    abstract fun getMovie(): MovieDao
     companion object {
         private var INSTANCE: MovieDB? = null
 

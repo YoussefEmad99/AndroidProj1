@@ -1,5 +1,6 @@
 package com.example.androidproj1.Models.UI
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -7,4 +8,5 @@ import androidx.room.PrimaryKey
 data class Movie (@PrimaryKey(autoGenerate = true) val id:Int,
                   val title:String,
                   val popularity:Double,
-                  val discription:String)
+                  val discription:String,
+                  val imgPath:String?=null )

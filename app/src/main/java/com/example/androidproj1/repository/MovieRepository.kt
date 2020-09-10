@@ -27,6 +27,9 @@ object MovieRepository {
                     call: Call<APIResponse>, response: Response<APIResponse>
                 ) {
                     if (response.isSuccessful) {
+                        //Delete previous movie entries before adding newer ones
+                        appDatabase.getMovieDao().deleteAllMovies()
+                        //Add new movie entries to database
                         val movieList = MovieMapper.mapToMovieList(response.body()!!)
                         appDatabase.getMovieDao().addMovie(movieList)
                         callback.onMovieReady(movieList)
@@ -39,10 +42,11 @@ object MovieRepository {
                 override fun onFailure(call: Call<APIResponse>, t: Throwable) {
                     t.printStackTrace()
                     val msg = "Error while getting movie data"
-
-                    // call database if available
                     callback.onMovieLoadingError(msg)
-                    callback.onMovieReady(appDatabase.getMovieDao().getMovie())
+                    // call database if available
+                    val movieList = appDatabase.getMovieDao().getMovie()
+                    if(movieList.isNotEmpty())
+                        callback.onMovieReady(appDatabase.getMovieDao().getMovie())
                 }
             })
     }

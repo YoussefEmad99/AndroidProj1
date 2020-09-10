@@ -12,7 +12,6 @@ data class Movie(
     @SerializedName("vote_average")
     val popularity: Double,
 
-
     @SerializedName("poster_path")
     val imageURL : String
 )

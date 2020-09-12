@@ -32,11 +32,21 @@
         android:id="@+id/fab"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:gravity="center"
         android:layout_margin="16dp"
+        android:layout_marginEnd="32dp"
         android:contentDescription="@string/refresh_movies"
+        android:gravity="center"
         android:src="@drawable/ic_refresh"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/main_bottom_bar"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/main_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

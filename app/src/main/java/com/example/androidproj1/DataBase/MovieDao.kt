@@ -17,5 +17,4 @@ interface MovieDao {
     @Query("DELETE FROM Movie_Table")
     fun deleteAllMovies()
 
-
 }

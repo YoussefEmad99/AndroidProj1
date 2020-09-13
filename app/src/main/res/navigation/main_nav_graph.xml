@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentA"
-        android:name="com.example.booster4apps.FragmentA"
+        android:name="com.example.androidproj1.fragments.FragmentA"
         android:label="Fragment A title"
         tools:layout="@layout/fragment_a">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/fragmentB"
-        android:name="com.example.booster4apps.FragmentB"
+        android:name="com.example.androidproj1.fragments.FragmentB"
         android:label="Fragment B title"
         tools:layout="@layout/fragment_b" />
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.androidproj1.UI
 
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -12,8 +13,13 @@ import com.example.androidproj1.R
 import com.example.androidproj1.recyclerview.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
+import kotlinx.android.synthetic.main.item_list.*
+
+
 
 class MainActivity : AppCompatActivity() {
+
+    private var favClicked = false
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -38,11 +44,12 @@ class MainActivity : AppCompatActivity() {
             loading_bar.visibility = View.VISIBLE
         }
 
-        movieRecycler.addItemDecoration(DividerItemDecoration(this,1))
+        movieRecycler.addItemDecoration(DividerItemDecoration(this, 1))
+
     }
 
     //Check the function of the button
-    private fun bindMovieData (movies: List<UIMovie>) {
+    private fun bindMovieData(movies: List<UIMovie>) {
         movieRecycler.adapter = MovieAdapter(movies)
         loading_bar.visibility = View.GONE
     }
@@ -50,6 +57,19 @@ class MainActivity : AppCompatActivity() {
     private fun handlingErr(errMsg: String){
         Toast.makeText(this, errMsg, Toast.LENGTH_LONG).show()
         loading_bar.visibility = View.GONE
+    }
+
+
+    fun favBtnPressed(view: View) {
+
+        if(favClicked == false) {
+            favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+            favClicked = true
+        }
+        else{
+            favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+             favClicked = false
+        }
     }
 
 }

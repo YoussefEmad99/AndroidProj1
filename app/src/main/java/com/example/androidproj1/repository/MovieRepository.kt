@@ -53,6 +53,7 @@ object MovieRepository {
     fun createDatabase(context: Context){
         appDatabase = MovieDB.getDatabase(context)
     }
+
     interface MovieCallback {
         fun onMovieReady(movies: List<UIMovie>)
         fun onMovieLoadingError(errorMsg: String)

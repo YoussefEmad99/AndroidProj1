@@ -25,6 +25,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
     init {
         MovieRepository.createDatabase(application)
     }
+
     //Check this one
     fun loadMovie(isForcedReload: Boolean = false){
         if (this::movieData.isInitialized && !isForcedReload ) {

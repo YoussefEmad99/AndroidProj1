@@ -50,8 +50,6 @@
                 android:layout_width="172dp"
                 android:layout_height="263dp"
                 android:background="@drawable/layout_bg"
-
-
                 android:contentDescription="@string/movie_poster"
                 android:scaleType="centerCrop"
                 android:theme="@style/Animation.Design.BottomSheetDialog"
@@ -65,10 +63,10 @@
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/button"
                 android:progress="70"
                 android:progressDrawable="@drawable/circle"

@@ -1,9 +1,6 @@
 package com.example.androidproj1.DataBase
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.androidproj1.Models.UI.UIMovie
 
 @Dao

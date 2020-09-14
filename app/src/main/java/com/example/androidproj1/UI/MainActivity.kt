@@ -17,26 +17,9 @@ import kotlinx.android.synthetic.main.item_list.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var favClicked = false
-
-    private val viewModel: MainViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
-
-
-    fun favBtnPressed(view: View) {
-
-        if(favClicked == false) {
-            favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-            favClicked = true
-        }
-        else{
-            favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-             favClicked = false
-        }
     }
 
 }

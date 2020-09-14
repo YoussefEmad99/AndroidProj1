@@ -52,7 +52,6 @@ class FragmentA : Fragment() {
             loadingBar?.visibility = View.VISIBLE
         }
 
-        movieRecycler.addItemDecoration(DividerItemDecoration(context,1))
 
 //        fragmentA_title.setOnClickListener {
 //            findNavController().navigate(R.id.action_fragmentA_to_fragmentB2)

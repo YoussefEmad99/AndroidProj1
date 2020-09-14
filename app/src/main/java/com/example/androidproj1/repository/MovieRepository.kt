@@ -2,7 +2,6 @@ package com.example.androidproj1.repository
 
 import android.content.Context
 import com.example.androidproj1.DataBase.MovieDB
-//import com.example.androidproj1.DataBase.appDatabase
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.network.APIInterface
 import com.example.androidproj1.network.APIResponse

@@ -20,35 +20,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        viewModel.movieLiveData.observe(this, Observer {
-//            bindMovieData(it)
-//        })
-//
-//        viewModel.onError.observe(this, Observer {
-//            handlingErr(it)
-//        })
-//
-//        //load data and show indefinite loading progress bar
-//        viewModel.loadMovie()
-//        loading_bar.visibility = View.VISIBLE
-//
-//        fab.setOnClickListener {
-//            viewModel.loadMovie(true)
-//            loading_bar.visibility = View.VISIBLE
-//        }
-//
-//        movieRecycler.addItemDecoration(DividerItemDecoration(this,1))
     }
-
-//    private fun bindMovieData (movies: List<UIMovie>) {
-//        movieRecycler.adapter = MovieAdapter(movies)
-//        loading_bar.visibility = View.GONE
-//    }
-//
-//    private fun handlingErr(errMsg: String){
-//        Toast.makeText(this, errMsg, Toast.LENGTH_LONG).show()
-//        loading_bar.visibility = View.GONE
-//    }
 
 }

@@ -50,6 +50,38 @@ object MovieRepository {
             })
     }
 
+    fun requestTopRated(callback: MovieCallback){
+        apiServices.getTopRated(apiKey)
+            .enqueue(object : Callback<APIResponse> {
+                override fun onResponse(
+                    call: Call<APIResponse>, response: Response<APIResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        //TODO: Delete previous movie entries before adding newer ones (For TopRated movies)
+                        appDatabase.getMovieDao().deleteAllMovies()
+
+                        //TODO: Add new movie entries to database (For TopRated movies)
+                        val movieList = MovieMapper.mapToMovieList(response.body()!!)
+                        //appDatabase.getMovieDao().addMovie(movieList)
+                        callback.onMovieReady(movieList)
+                    } else if (response.code() in 400..404) {
+                        val msg = "The Movie that you are looking for is not found"
+                        callback.onMovieLoadingError(msg)
+                    }
+                }
+
+                override fun onFailure(call: Call<APIResponse>, t: Throwable) {
+                    t.printStackTrace()
+                    val msg = "Error while getting movie data"
+                    callback.onMovieLoadingError(msg)
+
+                    //TODO: all database if available (For TopRated movies)
+                    val movieList = appDatabase.getMovieDao().getMovie()
+                    if(movieList.isNotEmpty())
+                        callback.onMovieReady(appDatabase.getMovieDao().getMovie())
+                }
+            })
+    }
     fun createDatabase(context: Context){
         appDatabase = MovieDB.getDatabase(context)
     }

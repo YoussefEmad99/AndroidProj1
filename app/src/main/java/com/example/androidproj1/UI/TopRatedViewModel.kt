@@ -1,5 +1,4 @@
 package com.example.androidproj1.UI
-
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -7,15 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.repository.MovieRepository
 
-class MainViewModel(application: Application) : AndroidViewModel(application), MovieRepository.MovieCallback {
+class TopRatedViewModel(application: Application) : AndroidViewModel(application), MovieRepository.MovieCallback {
 
-    private lateinit var movieData: List<UIMovie>
+    private lateinit var topRatedData: List<UIMovie>
 
-    private val _movieLiveData : MutableLiveData<List<UIMovie>>
+    private val _topRatedLiveData : MutableLiveData<List<UIMovie>>
             by lazy { MutableLiveData<List<UIMovie>>() }
 
-    val movieLiveData: LiveData<List<UIMovie>>
-        get() = _movieLiveData
+    val topRatedLiveData: LiveData<List<UIMovie>>
+        get() = _topRatedLiveData
 
     private val _onError: MutableLiveData<String>
             by lazy { MutableLiveData<String>() }
@@ -28,22 +27,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
 
     //Check this one
     fun loadMovie(isForcedReload: Boolean = false){
-        if (this::movieData.isInitialized && !isForcedReload ) {
-            _movieLiveData.value= movieData
+        if (this::topRatedData.isInitialized && !isForcedReload ) {
+            _topRatedLiveData.value= topRatedData
             return
         }
 
-        MovieRepository.requestMovieData(this)
+        MovieRepository.requestTopRated(this)
     }
 
     override fun onMovieReady(movies: List<UIMovie>) {
-        movieData = movies
-        _movieLiveData.value = movieData
+        topRatedData = movies
+        _topRatedLiveData.value = topRatedData
 
     }
 
     override fun onMovieLoadingError(errorMsg: String) {
         _onError.value = errorMsg
     }
-
 }

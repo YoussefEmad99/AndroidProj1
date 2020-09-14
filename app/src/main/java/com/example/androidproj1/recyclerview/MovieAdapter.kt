@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class MovieAdapter(var items: List<UIMovie>) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun getItemCount(): Int {
         return items.size

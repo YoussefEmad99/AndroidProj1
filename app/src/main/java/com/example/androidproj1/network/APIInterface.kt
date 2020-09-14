@@ -10,6 +10,7 @@ interface APIInterface {
         @Query("api_key") apiKey: String
     ) : Call<APIResponse>
 
+
     @GET ("top_rated?")
     fun getTopRated(
         @Query("api_key") apiKey:String

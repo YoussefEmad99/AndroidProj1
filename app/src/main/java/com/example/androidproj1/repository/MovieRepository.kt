@@ -1,5 +1,8 @@
 package com.example.androidproj1.repository
 
+import android.content.Context
+import com.example.androidproj1.DataBase.MovieDB
+//import com.example.androidproj1.DataBase.appDatabase
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.network.APIInterface
 import com.example.androidproj1.network.APIResponse
@@ -13,6 +16,7 @@ object MovieRepository {
     private val apiServices: APIInterface by lazy {
         RetrofitClient.getClient().create(APIInterface::class.java)
     }
+    private lateinit var appDatabase: MovieDB
 
     private const val apiKey = "9011f3fdc6551ebe547f181c79680b66"
 
@@ -23,7 +27,11 @@ object MovieRepository {
                     call: Call<APIResponse>, response: Response<APIResponse>
                 ) {
                     if (response.isSuccessful) {
+                        //Delete previous movie entries before adding newer ones
+                        appDatabase.getMovieDao().deleteAllMovies()
+                        //Add new movie entries to database
                         val movieList = MovieMapper.mapToMovieList(response.body()!!)
+                        appDatabase.getMovieDao().addMovie(movieList)
                         callback.onMovieReady(movieList)
                     } else if (response.code() in 400..404) {
                         val msg = "The Movie that you are looking for is not found"
@@ -35,8 +43,15 @@ object MovieRepository {
                     t.printStackTrace()
                     val msg = "Error while getting movie data"
                     callback.onMovieLoadingError(msg)
+                    // call database if available
+                    val movieList = appDatabase.getMovieDao().getMovie()
+                    if(movieList.isNotEmpty())
+                        callback.onMovieReady(appDatabase.getMovieDao().getMovie())
                 }
             })
+    }
+    fun createDatabase(context: Context){
+        appDatabase = MovieDB.getDatabase(context)
     }
 
     interface MovieCallback {

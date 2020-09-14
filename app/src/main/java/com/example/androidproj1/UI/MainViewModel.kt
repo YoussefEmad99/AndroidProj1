@@ -1,12 +1,13 @@
 package com.example.androidproj1.UI
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.repository.MovieRepository
 
-class MainViewModel :ViewModel(), MovieRepository.MovieCallback {
+class MainViewModel(application: Application) : AndroidViewModel(application), MovieRepository.MovieCallback {
 
     private lateinit var movieData: List<UIMovie>
 
@@ -20,6 +21,10 @@ class MainViewModel :ViewModel(), MovieRepository.MovieCallback {
             by lazy { MutableLiveData<String>() }
     val onError: LiveData<String>
         get() = _onError
+
+    init {
+        MovieRepository.createDatabase(application)
+    }
 
     //Check this one
     fun loadMovie(isForcedReload: Boolean = false){

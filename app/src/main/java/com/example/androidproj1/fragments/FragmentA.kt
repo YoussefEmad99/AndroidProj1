@@ -19,7 +19,6 @@ class FragmentA : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        fragmentA_title.setOnClickListener {
-//            findNavController().navigate(R.id.action_fragmentA_to_fragmentB2)
 //        }
     }
 

@@ -8,6 +8,9 @@ data class UIMovie(
     val title: String,
     val popularity: Double,
     val imgPath: String,
+    val description: String,
+    val date: String,
+
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0
 )

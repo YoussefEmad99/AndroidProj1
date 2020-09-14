@@ -13,5 +13,11 @@ data class Movie(
     val popularity: Double,
 
     @SerializedName("poster_path")
-    val imageURL : String
+    val imageURL : String,
+
+    @SerializedName("overview")
+    val description: String,
+
+    @SerializedName("release_date")
+    val date: String
 )

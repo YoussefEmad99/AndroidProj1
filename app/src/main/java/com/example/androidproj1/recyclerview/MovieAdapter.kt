@@ -32,13 +32,13 @@ class MovieAdapter(var items: List<UIMovie>) : RecyclerView.Adapter<MovieViewHol
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val imageBaseUrl = "https://image.tmdb.org/t/p/w200"
-    private var movieName: TextView = itemView.moviename
+//    private var movieName: TextView = itemView.moviename    removed because of removing title (new design)
     var movieDescription: TextView = itemView.moviedescription
     var movieImage: ImageView = itemView.movieimage
     var progressBar: ProgressBar = itemView.progressBar
 
     fun initialize(item: UIMovie) {
-        movieName.text = item.title
+//        movieName.text = item.title   removed because of removing title (new design)
         movieDescription.text = "${item.popularity * 10}%"
         Picasso.get().load("$imageBaseUrl${item.imgPath}")
             .into(movieImage)

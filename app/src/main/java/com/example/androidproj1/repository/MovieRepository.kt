@@ -19,15 +19,16 @@ object MovieRepository {
 
     private const val apiKey = "9011f3fdc6551ebe547f181c79680b66"
 
-    fun requestMovieData(callback: MovieCallback) {
-        apiServices.getMovies(apiKey)
+    fun requestMovieData(callback: MovieCallback, pageNum: Int) {
+        apiServices.getMovies(apiKey, pageNum)
             .enqueue(object : Callback<APIResponse> {
                 override fun onResponse(
                     call: Call<APIResponse>, response: Response<APIResponse>
                 ) {
                     if (response.isSuccessful) {
-                        //Delete previous movie entries before adding newer ones
-                        appDatabase.getMovieDao().deleteAllMovies()
+                        //if the api response requested the first page -> Delete previous movie entries before adding newer ones
+                        if(pageNum == 1)
+                            appDatabase.getMovieDao().deleteAllMovies()
                         //Add new movie entries to database
                         val movieList = MovieMapper.mapToMovieList(response.body()!!)
                         appDatabase.getMovieDao().addMovie(movieList)
@@ -50,14 +51,14 @@ object MovieRepository {
             })
     }
 
-    fun requestTopRated(callback: MovieCallback){
-        apiServices.getTopRated(apiKey)
+    fun requestTopRated(callback: MovieCallback, pageNum: Int){
+        apiServices.getTopRated(apiKey, pageNum)
             .enqueue(object : Callback<APIResponse> {
                 override fun onResponse(
                     call: Call<APIResponse>, response: Response<APIResponse>
                 ) {
                     if (response.isSuccessful) {
-                        //TODO: Delete previous movie entries before adding newer ones (For TopRated movies)
+                        //TODO: if the api response requested the first page -> Delete previous movie entries before adding newer ones (For TopRated movies)
                         appDatabase.getMovieDao().deleteAllMovies()
 
                         //TODO: Add new movie entries to database (For TopRated movies)

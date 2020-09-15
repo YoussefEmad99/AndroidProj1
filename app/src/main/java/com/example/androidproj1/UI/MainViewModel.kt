@@ -27,17 +27,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
     }
 
     //Check this one
-    fun loadMovie(isForcedReload: Boolean = false){
-        if (this::movieData.isInitialized && !isForcedReload ) {
-            _movieLiveData.value = movieData
-            return
-        }
-
-        MovieRepository.requestMovieData(this)
+    fun loadMovie(pageNum: Int = 1){
+        MovieRepository.requestMovieData(this, pageNum)
     }
 
     override fun onMovieReady(movies: List<UIMovie>) {
-        movieData = movies
+        movieData = if(this::movieData.isInitialized)
+            movieData + movies    //since movies are now loaded dynamically we cant replace them with the next page's results we need to add to them
+        else
+            movies
         _movieLiveData.value = movieData
 
     }

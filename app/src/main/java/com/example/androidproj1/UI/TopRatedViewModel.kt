@@ -26,17 +26,15 @@ class TopRatedViewModel(application: Application) : AndroidViewModel(application
     }
 
     //Check this one
-    fun loadMovie(isForcedReload: Boolean = false){
-        if (this::topRatedData.isInitialized && !isForcedReload ) {
-            _topRatedLiveData.value= topRatedData
-            return
-        }
-
-        MovieRepository.requestTopRated(this)
+    fun loadMovie(pageNum: Int = 1){
+        MovieRepository.requestTopRated(this, pageNum)
     }
 
     override fun onMovieReady(movies: List<UIMovie>) {
-        topRatedData = movies
+        topRatedData = if(this::topRatedData.isInitialized)
+            topRatedData + movies
+        else
+            movies
         _topRatedLiveData.value = topRatedData
 
     }

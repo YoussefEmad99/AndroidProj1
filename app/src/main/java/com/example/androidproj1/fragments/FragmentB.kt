@@ -50,13 +50,9 @@ class FragmentB : Fragment(){
         loadingBar?.visibility = View.VISIBLE
 
         activity?.fab?.setOnClickListener {
-            viewModel.loadMovie(true)
+            viewModel.loadMovie()
             loadingBar?.visibility = View.VISIBLE
         }
-
-
-//        fragmentA_title.setOnClickListener {
-//        }
 
     }
 

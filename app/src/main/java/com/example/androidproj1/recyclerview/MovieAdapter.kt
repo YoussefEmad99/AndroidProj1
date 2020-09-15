@@ -1,9 +1,11 @@
 package com.example.androidproj1.recyclerview
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -30,35 +32,25 @@ class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<Movi
         holder.initialize(items[position])
     }
 
+
 }
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val imageBaseUrl = "https://image.tmdb.org/t/p/w200"
 
-    //    private var movieName: TextView = itemView.moviename    removed because of removing title (new design)
+    //  private var movieName: TextView = itemView.moviename    removed because of removing title (new design)
     var movieDescription: TextView = itemView.moviedescription
     var movieImage: ImageView = itemView.movieimage
     var progressBar: ProgressBar = itemView.progressBar
-    var isClicked = false
+    var favButton: ImageButton = itemView.favButton
 
+    @SuppressLint("SetTextI18n")
     fun initialize(item: UIMovie) {
-//        movieName.text = item.title   removed because of removing title (new design)
+//      movieName.text = item.title   removed because of removing title (new design)
         movieDescription.text = "${item.popularity * 10}%"
         Picasso.get().load("$imageBaseUrl${item.imgPath}")
             .into(movieImage)
         progressBar.progress = (item.popularity * 10).toInt()
-
-        itemView.favButton.setOnClickListener {
-            //TODO: change image resource of list item when it is favourited
-            isClicked = if(isClicked){
-                itemView.favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-                Log.i("Movie Adapter", "is clicked: $isClicked\n is enabled: ${itemView.favButton.isEnabled}")
-                true
-            } else{
-                itemView.favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                false
-            }
-        }
     }
 
 }

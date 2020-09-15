@@ -2,6 +2,7 @@ package com.example.androidproj1.fragments
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_a.*
 
 class FragmentA : Fragment() {
 
+    var recyclerState: Parcelable? = null
     private var loadingBar: ProgressBar? = null
     var page = 1
 
@@ -44,6 +46,7 @@ class FragmentA : Fragment() {
 
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
             bindMovieData(it)
+            movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
@@ -64,6 +67,7 @@ class FragmentA : Fragment() {
                 return@setOnScrollChangeListener
             if(isLastItemDisplaying(movieRecycler)){
                 page += 1
+                recyclerState = movieRecycler.layoutManager?.onSaveInstanceState()
                 viewModel.loadMovie(page)
                 loadingBar?.visibility = View.VISIBLE
 

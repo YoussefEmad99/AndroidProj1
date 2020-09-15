@@ -32,6 +32,7 @@ class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<Movi
         holder.initialize(items[position])
     }
 
+
 }
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

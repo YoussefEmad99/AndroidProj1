@@ -1,6 +1,7 @@
 package com.example.androidproj1.UI
 
 import android.app.Application
+import android.os.Parcelable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +22,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
             by lazy { MutableLiveData<String>() }
     val onError: LiveData<String>
         get() = _onError
+
+//    private val _recyclerState : MutableLiveData<Parcelable>
+//            by lazy { MutableLiveData<Parcelable>() }
+//
+//    val recyclerState: LiveData<Parcelable>
+//        get() = _recyclerState
 
     init {
         MovieRepository.createDatabase(application)

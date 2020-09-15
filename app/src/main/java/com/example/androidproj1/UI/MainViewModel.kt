@@ -29,7 +29,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
     //Check this one
     fun loadMovie(isForcedReload: Boolean = false){
         if (this::movieData.isInitialized && !isForcedReload ) {
-            _movieLiveData.value= movieData
+            _movieLiveData.value = movieData
             return
         }
 

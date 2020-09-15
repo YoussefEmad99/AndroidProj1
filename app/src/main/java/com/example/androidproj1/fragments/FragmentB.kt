@@ -54,10 +54,6 @@ class FragmentB : Fragment(){
             loadingBar?.visibility = View.VISIBLE
         }
 
-
-//        fragmentA_title.setOnClickListener {
-//        }
-
     }
 
     private fun bindMovieData (movies: List<UIMovie>) {

@@ -45,25 +45,21 @@ class FragmentA : Fragment() {
 
         //load data and show indefinite loading progress bar
         viewModel.loadMovie()
-       loadingBar?.visibility = View.VISIBLE
+        loadingBar?.visibility = View.VISIBLE
 
         activity?.fab?.setOnClickListener {
             viewModel.loadMovie(true)
             loadingBar?.visibility = View.VISIBLE
         }
 
-
-//        fragmentA_title.setOnClickListener {
-//        }
-
     }
 
-    private fun bindMovieData (movies: List<UIMovie>) {
+    private fun bindMovieData(movies: List<UIMovie>) {
         movieRecycler.adapter = MovieAdapter(movies)
         loadingBar?.visibility = View.GONE
     }
 
-    private fun handlingErr(errMsg: String){
+    private fun handlingErr(errMsg: String) {
         Toast.makeText(context, errMsg, Toast.LENGTH_LONG).show()
         loadingBar?.visibility = View.GONE
     }

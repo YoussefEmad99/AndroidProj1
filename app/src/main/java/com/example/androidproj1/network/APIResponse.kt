@@ -2,8 +2,12 @@ package com.example.androidproj1.network
 
 import com.google.gson.annotations.SerializedName
 
-data class APIResponse(@SerializedName("results")
-                       val movies : List<Movie>)
+data class APIResponse(
+    @SerializedName("total_pages")
+    val totalPages: Int,
+    @SerializedName("results")
+    val movies: List<Movie>
+)
 
 data class Movie(
     @SerializedName("original_title")
@@ -13,7 +17,7 @@ data class Movie(
     val popularity: Double,
 
     @SerializedName("poster_path")
-    val imageURL : String,
+    val imageURL: String,
 
     @SerializedName("overview")
     val description: String,

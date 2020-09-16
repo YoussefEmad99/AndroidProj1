@@ -11,10 +11,11 @@ import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.repository.MovieRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application), MovieRepository.MovieCallback {
-    val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+    private val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
 
     private lateinit var movieData: List<UIMovie>
+    private var totalPages: Int = 1
 
     private val _movieLiveData : MutableLiveData<List<UIMovie>>
             by lazy { MutableLiveData<List<UIMovie>>() }
@@ -41,7 +42,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
         MovieRepository.requestMovieData(this, pageNum)
     }
 
-    override fun onMovieReady(movies: List<UIMovie>) {
+    override fun onMovieReady(movies: List<UIMovie>, totalPageNum: Int) {
+        //set number of total pages
+        totalPages = totalPageNum
+
         movieData = if(this::movieData.isInitialized)
             movieData + movies    //since movies are now loaded dynamically we cant replace them with the next page's results we need to add to them
         else

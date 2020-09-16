@@ -30,9 +30,10 @@ object MovieRepository {
                         if(pageNum == 1)
                             appDatabase.getMovieDao().deleteAllMovies()
                         //Add new movie entries to database
-                        val movieList = MovieMapper.mapToMovieList(response.body()!!)
+                        val responseBody = response.body()!!
+                        val movieList = MovieMapper.mapToMovieList(responseBody)
                         appDatabase.getMovieDao().addMovie(movieList)
-                        callback.onMovieReady(movieList)
+                        callback.onMovieReady(movieList, responseBody.totalPages)
                     } else if (response.code() in 400..404) {
                         val msg = "The Movie that you are looking for is not found"
                         callback.onMovieLoadingError(msg)
@@ -88,7 +89,7 @@ object MovieRepository {
     }
 
     interface MovieCallback {
-        fun onMovieReady(movies: List<UIMovie>)
+        fun onMovieReady(movies: List<UIMovie>, totalPageNum: Int = 1)
         fun onMovieLoadingError(errorMsg: String)
     }
 

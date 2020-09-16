@@ -1,7 +1,9 @@
 package com.example.androidproj1.UI
 
 import android.app.Application
-import android.os.Parcelable
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +11,8 @@ import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.repository.MovieRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application), MovieRepository.MovieCallback {
+    val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
 
     private lateinit var movieData: List<UIMovie>
 
@@ -23,18 +27,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
     val onError: LiveData<String>
         get() = _onError
 
-//    private val _recyclerState : MutableLiveData<Parcelable>
-//            by lazy { MutableLiveData<Parcelable>() }
-//
-//    val recyclerState: LiveData<Parcelable>
-//        get() = _recyclerState
-
     init {
         MovieRepository.createDatabase(application)
     }
 
+    private fun isConnected(activeNetwork: NetworkInfo?): Boolean = activeNetwork?.isConnectedOrConnecting == true
+
     //Check this one
     fun loadMovie(pageNum: Int = 1){
+        if(this::movieData.isInitialized && !isConnected(activeNetwork))
+            return
+
         MovieRepository.requestMovieData(this, pageNum)
     }
 

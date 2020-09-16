@@ -9,11 +9,9 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidproj1.Models.UI.UIMovie
@@ -25,15 +23,18 @@ import kotlinx.android.synthetic.main.fragment_a.*
 
 class FragmentA : Fragment() {
 
-    var recyclerState: Parcelable? = null
+    private var recyclerState: Parcelable? = null
     private var loadingBar: ProgressBar? = null
-    var page = 1
+    private var page = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_a, container, false)
     }
+
+
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,9 +63,10 @@ class FragmentA : Fragment() {
             loadingBar?.visibility = View.VISIBLE
         }
 
-        movieRecycler.setOnScrollChangeListener{ view, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if(view !is RecyclerView)
+        movieRecycler.setOnScrollChangeListener{ recyclerView, _, _, _, _ ->
+            if(recyclerView !is RecyclerView)
                 return@setOnScrollChangeListener
+
             if(isLastItemDisplaying(movieRecycler)){
                 page += 1
                 recyclerState = movieRecycler.layoutManager?.onSaveInstanceState()
@@ -92,8 +94,8 @@ class FragmentA : Fragment() {
             if (lastVisibleItemPosition != RecyclerView.NO_POSITION &&
                 lastVisibleItemPosition == recyclerView.adapter?.itemCount?.minus(1)
             )
-                return true;
+                return true
         }
-        return false;
+        return false
     }
 }

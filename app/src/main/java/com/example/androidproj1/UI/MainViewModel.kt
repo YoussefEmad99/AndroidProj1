@@ -35,7 +35,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
     }
 
     //Check this one
-    fun loadMovie() {
+    fun loadMovie(loadFun: (MovieRepository.MovieCallback, Int) -> Unit) {
         if (movieData != null && !isConnected()) {
             onMovieLoadingError("Error requesting further movie data")
             return
@@ -44,7 +44,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
         if (currentPage <= totalPages) {
             if (currentPage == 1)
                 movieData = null
-            MovieRepository.requestMovieData(this, currentPage)
+            loadFun(this, currentPage)
         } else
             onMovieLoadingError("Error requesting further movie data from the network")
 

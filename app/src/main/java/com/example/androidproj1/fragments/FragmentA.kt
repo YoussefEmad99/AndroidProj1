@@ -18,6 +18,7 @@ import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
 import com.example.androidproj1.UI.MainViewModel
 import com.example.androidproj1.recyclerview.MovieAdapter
+import com.example.androidproj1.repository.MovieRepository.requestMovieData
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
 
@@ -53,11 +54,11 @@ class FragmentA : Fragment() {
 
         //load data and show indefinite loading progress bar
         loadingBar?.visibility = View.VISIBLE
-        viewModel.loadMovie()
+        viewModel.loadMovie(::requestMovieData)
 
         activity?.fab?.setOnClickListener {
             loadingBar?.visibility = View.VISIBLE
-            viewModel.loadMovie()
+            viewModel.loadMovie(::requestMovieData)
         }
 
         movieRecycler.setOnScrollChangeListener{ recyclerView, _, _, _, _ ->
@@ -67,7 +68,7 @@ class FragmentA : Fragment() {
             if(isLastItemDisplaying(movieRecycler)){
                 recyclerState = movieRecycler.layoutManager?.onSaveInstanceState()
                 loadingBar?.visibility = View.VISIBLE
-                viewModel.loadMovie()
+                viewModel.loadMovie(::requestMovieData)
 
             }
         }

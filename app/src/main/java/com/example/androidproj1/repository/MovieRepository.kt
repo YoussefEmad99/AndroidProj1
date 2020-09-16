@@ -60,12 +60,15 @@ object MovieRepository {
                 ) {
                     if (response.isSuccessful) {
                         //TODO: if the api response requested the first page -> Delete previous movie entries before adding newer ones (For TopRated movies)
-                        appDatabase.getMovieDao().deleteAllMovies()
+                        //if the api response requested the first page -> Delete previous movie entries before adding newer ones
+                        if(pageNum == 1)
+                            appDatabase.getMovieDao().deleteAllMovies()
 
                         //TODO: Add new movie entries to database (For TopRated movies)
-                        val movieList = MovieMapper.mapToMovieList(response.body()!!)
-                        //appDatabase.getMovieDao().addMovie(movieList)
-                        callback.onMovieReady(movieList)
+                        val responseBody = response.body()!!
+                        val movieList = MovieMapper.mapToMovieList(responseBody)
+                        appDatabase.getMovieDao().addMovie(movieList)
+                        callback.onMovieReady(movieList, responseBody.totalPages)
                     } else if (response.code() in 400..404) {
                         val msg = "The Movie that you are looking for is not found"
                         callback.onMovieLoadingError(msg)

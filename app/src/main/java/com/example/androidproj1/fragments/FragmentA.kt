@@ -25,7 +25,6 @@ class FragmentA : Fragment() {
 
     private var recyclerState: Parcelable? = null
     private var loadingBar: ProgressBar? = null
-    private var page = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -66,10 +65,9 @@ class FragmentA : Fragment() {
                 return@setOnScrollChangeListener
 
             if(isLastItemDisplaying(movieRecycler)){
-                page += 1
                 recyclerState = movieRecycler.layoutManager?.onSaveInstanceState()
                 loadingBar?.visibility = View.VISIBLE
-                viewModel.loadMovie(page)
+                viewModel.loadMovie()
 
             }
         }

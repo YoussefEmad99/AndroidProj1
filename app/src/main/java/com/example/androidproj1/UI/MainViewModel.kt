@@ -36,10 +36,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application), M
 
     //Check this one
     fun loadMovie(pageNum: Int = 1){
-        if(this::movieData.isInitialized && !isConnected(activeNetwork))
+        if(this::movieData.isInitialized && !isConnected(activeNetwork)){
+            onMovieLoadingError("Error requesting further movie data")
             return
+        }
         if(pageNum <= totalPages)
             MovieRepository.requestMovieData(this, pageNum)
+
     }
 
     override fun onMovieReady(movies: List<UIMovie>, totalPageNum: Int) {

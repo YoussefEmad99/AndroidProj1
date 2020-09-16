@@ -33,9 +33,6 @@ class FragmentA : Fragment() {
         return inflater.inflate(R.layout.fragment_a, container, false)
     }
 
-
-
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,15 +49,16 @@ class FragmentA : Fragment() {
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
             handlingErr(it)
+            loadingBar?.visibility = View.GONE
         })
 
         //load data and show indefinite loading progress bar
-        viewModel.loadMovie()
         loadingBar?.visibility = View.VISIBLE
+        viewModel.loadMovie()
 
         activity?.fab?.setOnClickListener {
-            viewModel.loadMovie()
             loadingBar?.visibility = View.VISIBLE
+            viewModel.loadMovie()
         }
 
         movieRecycler.setOnScrollChangeListener{ recyclerView, _, _, _, _ ->
@@ -70,8 +68,8 @@ class FragmentA : Fragment() {
             if(isLastItemDisplaying(movieRecycler)){
                 page += 1
                 recyclerState = movieRecycler.layoutManager?.onSaveInstanceState()
-                viewModel.loadMovie(page)
                 loadingBar?.visibility = View.VISIBLE
+                viewModel.loadMovie(page)
 
             }
         }

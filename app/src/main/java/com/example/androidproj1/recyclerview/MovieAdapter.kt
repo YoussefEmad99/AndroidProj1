@@ -39,7 +39,7 @@ class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<Movi
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val imageBaseUrl = "https://image.tmdb.org/t/p/w200"
 
-    //  private var movieName: TextView = itemView.moviename    removed because of removing title (new design)
+      private var movieName: TextView = itemView.moviename    //removed because of removing title (new design)
     var movieDescription: TextView = itemView.moviedescription
     var movieImage: ImageView = itemView.movieimage
     var progressBar: ProgressBar = itemView.progressBar
@@ -47,7 +47,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     @SuppressLint("SetTextI18n")
     fun initialize(item: UIMovie) {
-//      movieName.text = item.title   removed because of removing title (new design)
+        movieName.text = item.title   //removed because of removing title (new design)
         movieDescription.text = "${item.popularity}"
         Picasso.get().load("$imageBaseUrl${item.imgPath}").into(movieImage)
         progressBar.progress = (item.popularity * 10).toInt()
@@ -59,12 +59,12 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             if (!fav[position]){
                 fav[position]=true
                 favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-                Toast.makeText(itemView.context, "Added movie number ${position+1} to favourites",Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "Added ${movieName.text} to favourites",Toast.LENGTH_SHORT).show()
             }
             else{
                 fav[position]=false
                 favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                Toast.makeText(itemView.context, "Removed movie number ${position+1} from favourites",Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "Removed ${movieName.text} from favourites",Toast.LENGTH_SHORT).show()
             }
 
 

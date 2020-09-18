@@ -5,16 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
+import com.example.androidproj1.fragments.FragmentA
+
+
 
 class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<MovieViewHolder>() {
 
@@ -33,6 +33,7 @@ class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<Movi
     }
 
 
+
 }
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,10 +48,29 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     @SuppressLint("SetTextI18n")
     fun initialize(item: UIMovie) {
 //      movieName.text = item.title   removed because of removing title (new design)
-        movieDescription.text = "${item.popularity * 10}%"
-        Picasso.get().load("$imageBaseUrl${item.imgPath}")
-            .into(movieImage)
+        movieDescription.text = "${item.popularity}"
+        Picasso.get().load("$imageBaseUrl${item.imgPath}").into(movieImage)
         progressBar.progress = (item.popularity * 10).toInt()
+
+        //-----------------arguably the greatest code ever written------------------
+        var fav: BooleanArray = BooleanArray(200) {i-> false} //using kotlin super powers to initalize in ONE AND ONLY LINE
+        favButton.setOnClickListener{v: View ->
+            var position: Int = bindingAdapterPosition
+            if (!fav[position]){
+                fav[position]=true
+                favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                Toast.makeText(itemView.context, "Added movie number ${position+1} to favourites",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                fav[position]=false
+                favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                Toast.makeText(itemView.context, "Removed movie number ${position+1} from favourites",Toast.LENGTH_SHORT).show()
+            }
+
+
+
+        }
     }
+
 
 }

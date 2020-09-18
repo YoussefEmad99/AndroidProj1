@@ -6,9 +6,11 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,11 +20,18 @@ import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
 import com.example.androidproj1.UI.MainViewModel
 import com.example.androidproj1.recyclerview.MovieAdapter
+import com.example.androidproj1.recyclerview.MovieViewHolder
 import com.example.androidproj1.repository.MovieRepository.requestMovieData
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.design.*
 import kotlinx.android.synthetic.main.fragment_a.*
+import kotlinx.android.synthetic.main.item_list.view.*
 
-class FragmentA : Fragment() {
+
+
+class FragmentA : Fragment()
+//    ,MovieViewHolder.onMovieListener
+    {
 
     private var recyclerState: Parcelable? = null
     private var loadingBar: ProgressBar? = null
@@ -45,6 +54,7 @@ class FragmentA : Fragment() {
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
             bindMovieData(it)
             movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
+
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
@@ -95,4 +105,8 @@ class FragmentA : Fragment() {
         }
         return false
     }
+
+
+
+
 }

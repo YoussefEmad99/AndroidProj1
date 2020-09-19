@@ -6,12 +6,12 @@ import com.example.androidproj1.Models.UI.UIMovie
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addFavMovie(movie: List<UIMovie>)
+    fun addMovie(movie: List<UIMovie>)
 
     @Query("SELECT * FROM Movie_Table")
-    fun getFavMovie(): List<UIMovie>
+    fun getMovie(): List<UIMovie>
 
     @Query("DELETE FROM Movie_Table")
-    fun deleteAllFavMovies()
+    fun deleteAllMovies()
 
 }

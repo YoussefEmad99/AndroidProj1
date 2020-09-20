@@ -19,5 +19,14 @@
         android:id="@+id/fragmentB"
         android:name="com.example.androidproj1.fragments.FragmentB"
         android:label="Fragment B title"
-        tools:layout="@layout/fragment_b" />
+        tools:layout="@layout/fragment_b" >
+        <action
+            android:id="@+id/action_fragmentB_to_fragmentC2"
+            app:destination="@id/fragmentC" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentC"
+        android:name="com.example.androidproj1.fragments.FragmentC"
+        android:label="fragment_c"
+        tools:layout="@layout/fragment_c" />
 </navigation>

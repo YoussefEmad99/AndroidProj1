@@ -16,6 +16,7 @@ import com.example.androidproj1.UI.TopRatedViewModel
 import com.example.androidproj1.recyclerview.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
+import kotlinx.android.synthetic.main.fragment_b.*
 
 class FragmentB : Fragment(){
 
@@ -24,7 +25,7 @@ class FragmentB : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_a, container, false)
+        return inflater.inflate(R.layout.fragment_b, container, false)
     }
 
     //TODO: For the fragemnt B that is the TopRated movies
@@ -57,7 +58,7 @@ class FragmentB : Fragment(){
     }
 
     private fun bindMovieData (movies: List<UIMovie>) {
-        movieRecycler.adapter = MovieAdapter(movies)
+        top_rated_recycler.adapter = MovieAdapter(movies)
         loadingBar?.visibility = View.GONE
     }
 

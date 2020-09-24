@@ -44,6 +44,7 @@ class FragmentA : Fragment()
         val view = inflater.inflate(R.layout.fragment_a, container, false)
         view.movieimage.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_fragmentA_to_detailedPage)}
         return view
+        
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

@@ -9,13 +9,13 @@ interface FavMovieDoa {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addFavMovie(movie: UIMovie)
 
-    @Query("SELECT * FROM Fav_Movie_Table")
+    @Query("SELECT * FROM Movie_Table")
     fun getFavMovie(): List<UIMovie>
 
-    @Query("DELETE FROM Fav_Movie_Table")
+    @Query("DELETE FROM Movie_Table")
     fun deleteAllFavMovies()
 
-    @Query("DELETE FROM Fav_Movie_Table WHERE id = :id")
+    @Query("DELETE FROM Movie_Table WHERE id = :id")
     fun deleteFavMovieById(id: Int)
 
     @Delete

@@ -21,4 +21,7 @@ interface FavMovieDoa {
     @Delete
     fun deleteFavMovie(fav_movie: UIMovie)
 
+    @Update
+    fun update (fav_movie: UIMovie)
+
 }

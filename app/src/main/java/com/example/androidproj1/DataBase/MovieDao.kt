@@ -11,7 +11,8 @@ interface MovieDao {
     @Query("SELECT * FROM Movie_Table")
     fun getMovie(): List<UIMovie>
 
-    @Query("DELETE FROM Movie_Table")
-    fun deleteAllMovies()
+
+
+
 
 }

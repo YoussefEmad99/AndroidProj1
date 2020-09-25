@@ -10,7 +10,7 @@ data class UIMovie(
     val imgPath: String,
     val description: String,
     val date: String,
-
+    var is_fav:Boolean=false,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0
 )

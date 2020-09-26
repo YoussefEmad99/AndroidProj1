@@ -1,11 +1,9 @@
 package com.example.androidproj1.DataBase
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.androidproj1.Models.UI.TopRatedMovieUI
 
+@Dao
 interface TopRatedMovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addPopularMovie(movie: TopRatedMovieUI)
@@ -15,9 +13,6 @@ interface TopRatedMovieDao {
 
     @Query("SELECT * FROM top_rated")
     fun getMovie(): List<TopRatedMovieUI>
-
-    @Query("SELECT * FROM top_rated WHERE movieId = :id")
-    fun getMovieById(id: Int)
 
     @Query("DELETE FROM top_rated")
     fun deleteAllMovies()

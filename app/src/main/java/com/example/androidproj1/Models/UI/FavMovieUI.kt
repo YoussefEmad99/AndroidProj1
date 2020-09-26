@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
         entity = UIMovie::class,
         parentColumns = arrayOf("id"),
         childColumns = arrayOf("movieId"),
-        onDelete = ForeignKey.CASCADE
+        onDelete = ForeignKey.NO_ACTION
     )]
 )
 class FavMovieUI(

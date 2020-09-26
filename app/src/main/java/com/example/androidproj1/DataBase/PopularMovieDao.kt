@@ -14,9 +14,6 @@ interface PopularMovieDao {
     @Query("SELECT * FROM most_popular")
     fun getMovie(): List<PopularMovieUI>
 
-    @Query("SELECT * FROM most_popular WHERE movieId = :id")
-    fun getMovieById(id: Int)
-
     @Query("DELETE FROM most_popular")
     fun deleteAllMovies()
 

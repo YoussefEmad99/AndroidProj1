@@ -16,13 +16,3 @@ class PopularMovieUI(
     @PrimaryKey(autoGenerate = false)
     val movieId: Int = 0
 )
-
-//class PopularMovieUI(
-//    popularTitle: String,
-//    popularPopularity: Double,
-//    popularImgPath: String,
-//    popularDescription: String,
-//    popularDate: String,
-//    @PrimaryKey(autoGenerate = false)
-//    val popularId: Int = 0)
-//        : UIMovie(popularTitle, popularPopularity, popularImgPath, popularDescription, popularDate, popularId)

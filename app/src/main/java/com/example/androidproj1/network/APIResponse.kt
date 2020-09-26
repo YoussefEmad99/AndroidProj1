@@ -23,8 +23,8 @@ data class Movie(
     val description: String,
 
     @SerializedName("release_date")
-    val date: String
+    val date: String,
 
-
-
+    @SerializedName("id")
+    val id: Int
 )

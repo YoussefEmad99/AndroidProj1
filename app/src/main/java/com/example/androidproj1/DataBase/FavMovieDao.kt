@@ -1,16 +1,15 @@
 package com.example.androidproj1.DataBase
 
 import androidx.room.*
-import com.example.androidproj1.Models.UI.FavMovieUI
 import com.example.androidproj1.Models.UI.UIMovie
 
 @Dao
-interface FavMovieDoa {
+interface FavMovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addFavMovie(movie: UIMovie)
 
     @Query("SELECT * FROM Movie_Table")
-    fun getFavMovie(): List<UIMovie>
+    fun getFavMovies(): List<UIMovie>
 
     @Query("DELETE FROM Movie_Table")
     fun deleteAllFavMovies()
@@ -20,5 +19,4 @@ interface FavMovieDoa {
 
     @Delete
     fun deleteFavMovie(fav_movie: UIMovie)
-
 }

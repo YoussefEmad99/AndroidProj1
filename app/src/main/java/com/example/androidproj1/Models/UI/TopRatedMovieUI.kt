@@ -5,14 +5,14 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "Fav_Movie_Table", foreignKeys = [ForeignKey(
+    tableName = "top_rated", foreignKeys = [ForeignKey(
         entity = UIMovie::class,
         parentColumns = arrayOf("id"),
         childColumns = arrayOf("movieId"),
         onDelete = ForeignKey.CASCADE
     )]
 )
-class FavMovieUI(
+class TopRatedMovieUI(
     @PrimaryKey(autoGenerate = false)
     val movieId: Int = 0
 )

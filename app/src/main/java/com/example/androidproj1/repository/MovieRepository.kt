@@ -15,7 +15,7 @@ object MovieRepository {
     private val apiServices: APIInterface by lazy {
         RetrofitClient.getClient().create(APIInterface::class.java)
     }
-    private lateinit var appDatabase: MovieDB
+    lateinit var appDatabase: MovieDB
 
     private const val apiKey = "9011f3fdc6551ebe547f181c79680b66"
 

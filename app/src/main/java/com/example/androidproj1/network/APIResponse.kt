@@ -24,4 +24,7 @@ data class Movie(
 
     @SerializedName("release_date")
     val date: String
+
+
+
 )

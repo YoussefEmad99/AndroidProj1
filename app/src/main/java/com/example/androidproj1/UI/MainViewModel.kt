@@ -8,7 +8,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.androidproj1.Models.UI.UIMovie
+import com.example.androidproj1.recyclerview.MovieAdapter
 import com.example.androidproj1.repository.MovieRepository
+
 
 class MainViewModel(application: Application) : AndroidViewModel(application),
     MovieRepository.MovieCallback {

@@ -58,7 +58,7 @@ class FragmentB : Fragment(){
     }
 
     private fun bindMovieData (movies: List<UIMovie>) {
-        top_rated_movieRecycler.adapter = MovieAdapter(movies)
+        top_rated_recycler.adapter = MovieAdapter(movies)
         loadingBar?.visibility = View.GONE
     }
 

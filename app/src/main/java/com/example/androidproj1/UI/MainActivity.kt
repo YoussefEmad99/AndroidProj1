@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -35,49 +34,38 @@ class MainActivity : AppCompatActivity() {
 
 
 
-//-----------------Function to switch between Fragments---------//
-    private fun switchFragment() {
+    private fun switchFragment(){
 
-       var checker:String="A"
-       var frag: Fragment = FragmentA()
-       val bottomNav: BottomNavigationView = findViewById(R.id.main_bottom_bar)
-
+        lateinit var FragmentA: FragmentA
+        lateinit var FragmentB: FragmentB
+        lateinit var FragmentC: FragmentC
+        val bottomNav: BottomNavigationView = findViewById(R.id.main_bottom_bar)
         bottomNav.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
+            when(item.itemId){
 
-                R.id.fragmentA -> {
-                    if(checker != "A") {
-                        frag = FragmentA()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_container, frag)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
-                        checker = "A"
-                    }
+                R.id.fragmentA ->{
+                    FragmentA = FragmentA()
+                    supportFragmentManager.beginTransaction().replace(R.id.main_container, FragmentA)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
 
                 }
 
-                R.id.fragmentB -> {
-                    if(checker != "B"){
-                    frag = FragmentB()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, frag)
+                R.id.fragmentB ->{
+                    FragmentB = FragmentB()
+                    supportFragmentManager.beginTransaction().replace(R.id.main_container, FragmentB)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
-                    checker = "B"}
 
                 }
 
-                R.id.fragmentC -> {
-                    if(checker != "C"){
-                    frag = FragmentC()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, frag)
+                R.id.fragmentC ->{
+                    FragmentC = FragmentC()
+                    supportFragmentManager.beginTransaction().replace(R.id.main_container, FragmentC)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
-                    checker = "C" }
 
                 }
             }
             true
         }
-    }
 
+    }
 }

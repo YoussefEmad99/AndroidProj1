@@ -21,7 +21,7 @@
         android:label="Fragment B title"
         tools:layout="@layout/fragment_b" >
         <action
-            android:id="@+id/action_fragmentB_to_fragmentC22"
+            android:id="@+id/action_fragmentB_to_fragmentC2"
             app:destination="@id/fragmentC" />
     </fragment>
     <fragment

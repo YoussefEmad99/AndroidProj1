@@ -3,69 +3,57 @@ package com.example.androidproj1.fragments
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
 import com.example.androidproj1.UI.MainViewModel
+import com.example.androidproj1.fragments.FragmentADirections.Companion.actionFragmentAToDetailedPage
 import com.example.androidproj1.recyclerview.MovieAdapter
 import com.example.androidproj1.repository.MovieRepository.requestMovieData
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
-import kotlinx.android.synthetic.main.item_list.view.*
 
 
-class FragmentA : Fragment()
-//    ,MovieViewHolder.onMovieListener
-    {
+class FragmentA : Fragment() {
 
     private var recyclerState: Parcelable? = null
     private var loadingBar: ProgressBar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_a, container, false)
-
-
-
-
-        return view
-
-        
+        savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_a, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("fragmentA", "tag: ${this@FragmentA.tag}")
 
-        movieRecycler.addOnItemTouchListener(RecyclerItemClickListener
-            (view.context, movieRecycler, object : RecyclerItemClickListener.OnItemClickListener {
+//        movieRecycler.addOnItemTouchListener(RecyclerItemClickListener
+//            (view.context, movieRecycler, object : RecyclerItemClickListener.OnItemClickListener {
+//
+//            override fun onItemClick(view: View, position: Int) {
+//                val movieName = view.moviename.text.toString()
+//                val popularity = view.moviedescription.text.toString()
+//                val movieDetails = MovieDetails(movieName,popularity)
+//
+//                val action = FragmentADirections.actionFragmentAToDetailedPage(movieDetails)
+//                findNavController().navigate(action)
+//            }
+//        }))
 
-            override fun onItemClick(view: View, position: Int) {
-                val movieName = view.moviename.text.toString()
-                val popularity = view.moviedescription.text.toString()
-                val movieDetails = MovieDetails(movieName,popularity)
-
-                val action = FragmentADirections.actionFragmentAToDetailedPage(movieDetails)
-                findNavController().navigate(action)
-
-
-            }
-
-        }))
         //reference to the loading bar
         loadingBar = activity?.loading_bar
         //view model of the current fragment
@@ -74,8 +62,6 @@ class FragmentA : Fragment()
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
             bindMovieData(it)
             movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
-
-
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
@@ -103,15 +89,10 @@ class FragmentA : Fragment()
 
             }
         }
-
-
-
-
-
     }
 
     private fun bindMovieData(movies: List<UIMovie>) {
-        movieRecycler.adapter = MovieAdapter(movies)
+        movieRecycler.adapter = MovieAdapter(movies, ::actionFragmentAToDetailedPage)
         loadingBar?.visibility = View.GONE
     }
 
@@ -130,9 +111,4 @@ class FragmentA : Fragment()
         }
         return false
     }
-
-
-
-
-
 }

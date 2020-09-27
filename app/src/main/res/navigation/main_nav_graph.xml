@@ -42,5 +42,12 @@
         android:id="@+id/detailedPage"
         android:name="com.example.androidproj1.fragments.DetailedPage"
         android:label="fragment_detailed_page"
-        tools:layout="@layout/fragment_detailed_page" />
+        tools:layout="@layout/fragment_detailed_page" >
+        <action
+            android:id="@+id/action_detailedPage_to_fragmentA"
+            app:destination="@id/fragmentA" />
+        <argument
+            android:name="MovieDetailsTransfer"
+            app:argType="com.example.androidproj1.fragments.MovieDetails" />
+    </fragment>
 </navigation>

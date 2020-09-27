@@ -6,26 +6,23 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
 import com.example.androidproj1.UI.MainViewModel
 import com.example.androidproj1.recyclerview.MovieAdapter
-import com.example.androidproj1.recyclerview.MovieViewHolder
 import com.example.androidproj1.repository.MovieRepository.requestMovieData
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.design.*
 import kotlinx.android.synthetic.main.fragment_a.*
+import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
 
 
@@ -86,6 +83,17 @@ class FragmentA : Fragment()
                 viewModel.loadMovie(::requestMovieData)
 
             }
+        }
+
+        movieimage.setOnClickListener {
+            val movieName = view.moviename.toString()
+            val popularity = view.progressBar.progress.toDouble()
+            val description = view.moviedescription.toString()
+            val MovieDetails = MovieDetails(movieName,popularity,description)
+
+            val action = FragmentADirections.actionFragmentAToDetailedPage(MovieDetails)
+            findNavController().navigate(action)
+
         }
 
     }

@@ -1,14 +1,29 @@
 package com.example.androidproj1.UI
 
+import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
-import com.example.androidproj1.fragments.FragmentA
-import com.example.androidproj1.fragments.FragmentB
-import com.example.androidproj1.fragments.FragmentC
+import com.example.androidproj1.fragments.*
+import com.example.androidproj1.recyclerview.MovieAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_a.*
+import kotlinx.android.synthetic.main.item_list.*
 
 class MainActivity : AppCompatActivity() {
 

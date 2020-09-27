@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import com.example.androidproj1.fragments.FragmentA
+import com.example.androidproj1.network.Movie
 import com.example.androidproj1.repository.MovieRepository
 import com.example.androidproj1.repository.MovieRepository.addMovieFav
 import com.example.androidproj1.repository.MovieRepository.appDatabase

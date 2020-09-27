@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,9 +23,7 @@ import com.example.androidproj1.recyclerview.MovieAdapter
 import com.example.androidproj1.repository.MovieRepository.requestMovieData
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
-import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
-
 
 
 class FragmentA : Fragment()
@@ -40,7 +39,11 @@ class FragmentA : Fragment()
     ): View? {
         val view = inflater.inflate(R.layout.fragment_a, container, false)
 
+
+
+
         return view
+
         
     }
 
@@ -48,6 +51,21 @@ class FragmentA : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        movieRecycler.addOnItemTouchListener(RecyclerItemClickListener
+            (view.context, movieRecycler, object : RecyclerItemClickListener.OnItemClickListener {
+
+            override fun onItemClick(view: View, position: Int) {
+                val movieName = view.moviename.text.toString()
+                val popularity = view.moviedescription.text.toString()
+                val movieDetails = MovieDetails(movieName,popularity)
+
+                val action = FragmentADirections.actionFragmentAToDetailedPage(movieDetails)
+                findNavController().navigate(action)
+
+
+            }
+
+        }))
         //reference to the loading bar
         loadingBar = activity?.loading_bar
         //view model of the current fragment
@@ -56,6 +74,7 @@ class FragmentA : Fragment()
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
             bindMovieData(it)
             movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
+
 
         })
 
@@ -85,16 +104,9 @@ class FragmentA : Fragment()
             }
         }
 
-        movieimage.setOnClickListener {
-            val movieName = view.moviename.toString()
-            val popularity = view.progressBar.progress.toDouble()
-            val description = view.moviedescription.toString()
-            val MovieDetails = MovieDetails(movieName,popularity,description)
 
-            val action = FragmentADirections.actionFragmentAToDetailedPage(MovieDetails)
-            findNavController().navigate(action)
 
-        }
+
 
     }
 
@@ -118,6 +130,7 @@ class FragmentA : Fragment()
         }
         return false
     }
+
 
 
 

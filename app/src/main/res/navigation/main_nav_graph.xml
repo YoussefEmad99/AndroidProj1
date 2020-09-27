@@ -20,6 +20,9 @@
             app:destination="@id/detailedPage"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_fragmentA_to_fragmentC"
+            app:destination="@id/fragmentC" />
     </fragment>
 
     <fragment
@@ -32,12 +35,22 @@
             app:destination="@id/fragmentC"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_fragmentB_to_fragmentA"
+            app:destination="@id/fragmentA" />
     </fragment>
     <fragment
         android:id="@+id/fragmentC"
         android:name="com.example.androidproj1.fragments.FragmentC"
         android:label="fragment_c"
-        tools:layout="@layout/fragment_c" />
+        tools:layout="@layout/fragment_c" >
+        <action
+            android:id="@+id/action_fragmentC_to_fragmentB"
+            app:destination="@id/fragmentB" />
+        <action
+            android:id="@+id/action_fragmentC_to_fragmentA"
+            app:destination="@id/fragmentA" />
+    </fragment>
     <fragment
         android:id="@+id/detailedPage"
         android:name="com.example.androidproj1.fragments.DetailedPage"

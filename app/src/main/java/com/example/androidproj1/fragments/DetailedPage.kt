@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.example.androidproj1.R
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_detailed_page.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,15 +42,20 @@ class DetailedPage : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detailed_page, container, false)
 
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        main_bottom_bar.visibility = View.GONE
+
         val detailMovieName = args.MovieDetailsTransfer.movieName
         val detailMoviePopularity = args.MovieDetailsTransfer.popularity
-        val detailMovieDesctiption = args.MovieDetailsTransfer.description
+
+        textView2.text = detailMovieName
+        textView8.text = detailMoviePopularity
+
+
     }
 
     companion object {

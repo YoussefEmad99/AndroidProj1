@@ -17,7 +17,11 @@ import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import com.example.androidproj1.fragments.FragmentA
 import com.example.androidproj1.repository.MovieRepository
+import com.example.androidproj1.repository.MovieRepository.addMovieFav
 import com.example.androidproj1.repository.MovieRepository.appDatabase
+import com.example.androidproj1.repository.MovieRepository.deleteMovieFav
+import com.example.androidproj1.repository.MovieRepository.getFavouriteMovieList
+import com.example.androidproj1.repository.MovieRepository.isMovieFav
 
 
 class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<MovieViewHolder>() {
@@ -35,9 +39,6 @@ class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<Movi
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.initialize(items[position])
     }
-
-
-
 }
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -58,31 +59,23 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         Picasso.get().load("$imageBaseUrl${item.imgPath}").into(movieImage)
         progressBar.progress = (item.popularity * 10).toInt()
-        if (item.is_fav) {favButton.setImageResource(R.drawable.ic_baseline_favorite_24)}
-        //-----------------arguably the greatest code ever written------------------
-        //var fav: BooleanArray = BooleanArray(200) {i-> false} //using kotlin super powers to initalize in ONE AND ONLY LINE
+
+        if (isMovieFav(item.id)) {
+            favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }
+
         favButton.setOnClickListener{v: View ->
-            var position: Int = bindingAdapterPosition
-            if (item.is_fav == false ){
-                item.is_fav= true
+            if (!isMovieFav(item.id)){
                 favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                addMovieFav(item.id)
                 Toast.makeText(itemView.context, "Added ${movieName.text} to favourites",Toast.LENGTH_SHORT).show()
             }
             else{
-                item.is_fav= false
                 favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                deleteMovieFav(item.id)
                 Toast.makeText(itemView.context, "Removed ${movieName.text} from favourites",Toast.LENGTH_SHORT).show()
             }
-
-
-
-
-
         }
         //view.movieimage.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_fragmentA_to_detailedPage)}
-
     }
-
-
-
 }

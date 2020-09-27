@@ -21,8 +21,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
 import kotlinx.android.synthetic.main.item_list.*
 
-
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,14 +30,8 @@ class MainActivity : AppCompatActivity() {
         switchFragment()
     }
 
-
-
-
-
-
     private fun switchFragment() {
-
-        var checker:String="A"
+        var checker = "A"
         var frag: Fragment = FragmentA()
         val bottomNav: BottomNavigationView = findViewById(R.id.main_bottom_bar)
 

@@ -60,7 +60,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
         movieImage.setOnClickListener {
-            val action = actionFunction(MovieDetails(item.title, item.popularity.toString()))
+            val action = actionFunction(MovieDetails(item.title, item.popularity.toString(), movieImage))
             Navigation.findNavController(itemView).navigate(action)
         }
 

@@ -39,18 +39,6 @@ class FragmentA : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        movieRecycler.addOnItemTouchListener(RecyclerItemClickListener
-//            (view.context, movieRecycler, object : RecyclerItemClickListener.OnItemClickListener {
-//
-//            override fun onItemClick(view: View, position: Int) {
-//                val movieName = view.moviename.text.toString()
-//                val popularity = view.moviedescription.text.toString()
-//                val movieDetails = MovieDetails(movieName,popularity)
-//
-//                val action = FragmentADirections.actionFragmentAToDetailedPage(movieDetails)
-//                findNavController().navigate(action)
-//            }
-//        }))
         //reference to the loading bar
         loadingBar = activity?.loading_bar
         //view model of the current fragment
@@ -86,11 +74,6 @@ class FragmentA : Fragment() {
 
             }
         }
-
-
-
-
-
     }
 
     private fun bindMovieData(movies: List<UIMovie>) {

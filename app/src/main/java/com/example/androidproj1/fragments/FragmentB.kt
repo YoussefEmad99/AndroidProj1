@@ -14,6 +14,7 @@ import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
 import com.example.androidproj1.UI.MainViewModel
 import com.example.androidproj1.UI.TopRatedViewModel
+import com.example.androidproj1.fragments.FragmentBDirections.Companion.actionFragmentBToDetailedPage
 import com.example.androidproj1.fragments.FragmentBDirections.Companion.actionFragmentBToFragmentA
 import com.example.androidproj1.recyclerview.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -61,9 +62,7 @@ class FragmentB : Fragment(){
 
     private fun bindMovieData (movies: List<UIMovie>) {
         //TODO: add correct action which goes from B to detailed page here
-        top_rated_movieRecycler.adapter = MovieAdapter(movies,
-            FragmentADirections.Companion::actionFragmentAToDetailedPage
-        )
+        top_rated_movieRecycler.adapter = MovieAdapter(movies,::actionFragmentBToDetailedPage)
         loadingBar?.visibility = View.GONE
     }
 

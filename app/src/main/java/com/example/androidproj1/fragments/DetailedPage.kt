@@ -69,8 +69,6 @@ class DetailedPage : Fragment() {
         }
 
         imageView2.setImageDrawable(movieimg.drawable)
-
-
     }
 
     companion object {

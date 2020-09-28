@@ -29,7 +29,7 @@
         android:id="@+id/fragmentB"
         android:name="com.example.androidproj1.fragments.FragmentB"
         android:label="Fragment B title"
-        tools:layout="@layout/fragment_b" >
+        tools:layout="@layout/fragment_b">
         <action
             android:id="@+id/action_fragmentB_to_fragmentC2"
             app:destination="@id/fragmentC"
@@ -38,24 +38,34 @@
         <action
             android:id="@+id/action_fragmentB_to_fragmentA"
             app:destination="@id/fragmentA" />
+        <action
+            android:id="@+id/action_fragmentB_to_detailedPage"
+            app:destination="@id/detailedPage"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentC"
         android:name="com.example.androidproj1.fragments.FragmentC"
         android:label="fragment_c"
-        tools:layout="@layout/fragment_c" >
+        tools:layout="@layout/fragment_c">
         <action
             android:id="@+id/action_fragmentC_to_fragmentB"
             app:destination="@id/fragmentB" />
         <action
             android:id="@+id/action_fragmentC_to_fragmentA"
             app:destination="@id/fragmentA" />
+        <action
+            android:id="@+id/action_fragmentC_to_detailedPage"
+            app:destination="@id/detailedPage"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/detailedPage"
         android:name="com.example.androidproj1.fragments.DetailedPage"
         android:label="fragment_detailed_page"
-        tools:layout="@layout/fragment_detailed_page" >
+        tools:layout="@layout/fragment_detailed_page">
         <action
             android:id="@+id/action_detailedPage_to_fragmentA"
             app:destination="@id/fragmentA" />

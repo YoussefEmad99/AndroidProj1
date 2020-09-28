@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.androidproj1.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detailed_page.*
+import kotlinx.android.synthetic.main.fragment_detailed_page.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,9 +52,11 @@ class DetailedPage : Fragment() {
 
         val detailMovieName = args.MovieDetailsTransfer.movieName
         val detailMoviePopularity = args.MovieDetailsTransfer.popularity
+        val movieimg = args.MovieDetailsTransfer.movieImage
 
         textView2.text = detailMovieName
         textView8.text = detailMoviePopularity
+        imageView2.setImageDrawable(movieimg.drawable)
 
 
     }

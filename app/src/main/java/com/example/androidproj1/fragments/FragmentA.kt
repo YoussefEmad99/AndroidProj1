@@ -55,9 +55,11 @@ class FragmentA : Fragment()
             (view.context, movieRecycler, object : RecyclerItemClickListener.OnItemClickListener {
 
             override fun onItemClick(view: View, position: Int) {
-                val movieName = view.moviename.text.toString()
+               val movieName = view.moviename.text.toString()
                 val popularity = view.moviedescription.text.toString()
-                val movieDetails = MovieDetails(movieName,popularity)
+                val img = view.movieimage
+
+                val movieDetails = MovieDetails(movieName,popularity,img)
 
                 val action = FragmentADirections.actionFragmentAToDetailedPage(movieDetails)
                 findNavController().navigate(action)

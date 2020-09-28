@@ -1,5 +1,6 @@
 package com.example.androidproj1.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.androidproj1.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detailed_page.*
+import kotlinx.android.synthetic.main.fragment_detailed_page.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,9 +53,22 @@ class DetailedPage : Fragment() {
 
         val detailMovieName = args.MovieDetailsTransfer.movieName
         val detailMoviePopularity = args.MovieDetailsTransfer.popularity
+        val movieimg = args.MovieDetailsTransfer.movieImage
 
         textView2.text = detailMovieName
         textView8.text = detailMoviePopularity
+        if (detailMoviePopularity.toFloat() < 4 ){
+            textView8.setTextColor(Color.parseColor("#ff0e0e"))
+        }
+        else if(detailMoviePopularity.toFloat() >= 4 && detailMoviePopularity.toFloat() <7 ){
+            textView8.setTextColor(Color.parseColor("#e1c419"))
+        }
+        else {
+            textView8.setTextColor(Color.parseColor("#2de71c"))
+
+        }
+
+        imageView2.setImageDrawable(movieimg.drawable)
 
 
     }

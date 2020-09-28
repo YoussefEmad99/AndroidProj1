@@ -3,7 +3,6 @@ package com.example.androidproj1.fragments
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,6 @@ class FragmentA : Fragment() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("fragmentA", "tag: ${this@FragmentA.tag}")
 
 //        movieRecycler.addOnItemTouchListener(RecyclerItemClickListener
 //            (view.context, movieRecycler, object : RecyclerItemClickListener.OnItemClickListener {
@@ -53,7 +51,6 @@ class FragmentA : Fragment() {
 //                findNavController().navigate(action)
 //            }
 //        }))
-
         //reference to the loading bar
         loadingBar = activity?.loading_bar
         //view model of the current fragment
@@ -89,6 +86,11 @@ class FragmentA : Fragment() {
 
             }
         }
+
+
+
+
+
     }
 
     private fun bindMovieData(movies: List<UIMovie>) {

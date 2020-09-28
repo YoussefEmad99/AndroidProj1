@@ -8,14 +8,15 @@
     <LinearLayout
         android:id="@+id/vertical_linearlayout"
         android:layout_width="match_parent"
-        android:layout_height="643dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="159dp"
+            android:layout_height="344dp"
             android:contentDescription="@string/movie_poster"
+            android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars" />
 
         <LinearLayout
@@ -24,17 +25,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView1"
-                android:layout_width="70dp"
-                android:layout_height="59dp"
-                android:layout_weight="1"
-                android:text="@string/title" />
-
-            <TextView
                 android:id="@+id/textView2"
                 android:layout_width="246dp"
                 android:layout_height="59dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         </LinearLayout>
 
@@ -59,25 +54,6 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/genre" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="214dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="74dp"
             android:orientation="horizontal">
 
@@ -95,42 +71,5 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/age_range" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="241dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="144dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/overview" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="232dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

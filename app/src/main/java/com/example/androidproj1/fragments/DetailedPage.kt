@@ -1,5 +1,6 @@
 package com.example.androidproj1.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -56,6 +57,17 @@ class DetailedPage : Fragment() {
 
         textView2.text = detailMovieName
         textView8.text = detailMoviePopularity
+        if (detailMoviePopularity.toFloat() < 4 ){
+            textView8.setTextColor(Color.parseColor("#ff0e0e"))
+        }
+        else if(detailMoviePopularity.toFloat() >= 4 && detailMoviePopularity.toFloat() <7 ){
+            textView8.setTextColor(Color.parseColor("#e1c419"))
+        }
+        else {
+            textView8.setTextColor(Color.parseColor("#2de71c"))
+
+        }
+
         imageView2.setImageDrawable(movieimg.drawable)
 
 

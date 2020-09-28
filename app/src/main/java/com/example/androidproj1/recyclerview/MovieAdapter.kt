@@ -44,7 +44,7 @@ class MovieAdapter(private var items: List<UIMovie>) : RecyclerView.Adapter<Movi
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val imageBaseUrl = "https://image.tmdb.org/t/p/w200"
-    //private  var appDatabase: MovieDB = MovieDB.getDatabase(application)
+    //private  var appDatabase: MovieDB =  MovieDB.getDatabase(application)
 
     private var movieName: TextView = itemView.moviename    //removed because of removing title (new design)
     var movieDescription: TextView = itemView.moviedescription

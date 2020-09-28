@@ -7,22 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
 import com.example.androidproj1.UI.MainViewModel
-import com.example.androidproj1.UI.TopRatedViewModel
 import com.example.androidproj1.fragments.FragmentBDirections.Companion.actionFragmentBToDetailedPage
-import com.example.androidproj1.recyclerview.MovieAdapter
 import com.example.androidproj1.repository.MovieRepository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
-import kotlinx.android.synthetic.main.fragment_b.*
 
 class FragmentB : Fragment() {
 
@@ -47,9 +42,7 @@ class FragmentB : Fragment() {
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
-            bindMovieData(
-                it, movieRecycler, loadingBar,::actionFragmentBToDetailedPage
-            )
+            bindMovieData(it, movieRecycler, loadingBar,::actionFragmentBToDetailedPage)
             movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
         })
 
@@ -74,11 +67,9 @@ class FragmentB : Fragment() {
             if (isLastItemDisplaying(movieRecycler)) {
                 recyclerState = movieRecycler.layoutManager?.onSaveInstanceState()
                 loadingBar?.visibility = View.VISIBLE
-                viewModel.loadMovie(MovieRepository::requestMovieData)
-
+                viewModel.loadMovie(MovieRepository::requestTopRated)
             }
         }
-
     }
 
 }

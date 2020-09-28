@@ -71,7 +71,6 @@ class FragmentA : Fragment() {
                 recyclerState = movieRecycler.layoutManager?.onSaveInstanceState()
                 loadingBar?.visibility = View.VISIBLE
                 viewModel.loadMovie(::requestMovieData)
-
             }
         }
     }

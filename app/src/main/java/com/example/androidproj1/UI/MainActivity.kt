@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -30,56 +31,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-
-        switchFragment()
-    }
-
-    private fun switchFragment() {
-        var checker = "A"
-        var frag: Fragment = FragmentA()
         val bottomNav: BottomNavigationView = findViewById(R.id.main_bottom_bar)
 
-        bottomNav.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
 
+        bottomNav.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
                 R.id.fragmentA -> {
-                    if(checker != "A") {
-                        frag = FragmentA()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_container, frag)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
-
-                        checker = "A"
-                    }
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentA)
                 }
-
                 R.id.fragmentB -> {
-                    if(checker != "B") {
-                        frag = FragmentB()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_container, frag)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
-                        checker = "B"
-                    }
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentB)
+                }
+                R.id.fragmentC -> {
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentC)
                 }
 
-                R.id.fragmentC -> {
-                    if (checker != "C") {
-                        frag = FragmentC()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_container, frag)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
-                        checker = "C"
-                    }
-                }
             }
             true
         }
-    }
 
-}
+
+    }}
 
 
 

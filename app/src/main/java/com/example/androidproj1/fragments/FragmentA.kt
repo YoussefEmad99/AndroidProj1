@@ -45,12 +45,12 @@ class FragmentA : Fragment() {
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
-            bindMovieData(it)
+            bindMovieData(it, movieRecycler, loadingBar, ::actionFragmentAToDetailedPage)
             movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
-            handlingErr(it)
+            handlingErr(it, context, loadingBar)
             loadingBar?.visibility = View.GONE
         })
 
@@ -74,26 +74,5 @@ class FragmentA : Fragment() {
 
             }
         }
-    }
-
-    private fun bindMovieData(movies: List<UIMovie>) {
-        movieRecycler.adapter = MovieAdapter(movies, ::actionFragmentAToDetailedPage)
-        loadingBar?.visibility = View.GONE
-    }
-
-    private fun handlingErr(errMsg: String) {
-        Toast.makeText(context, errMsg, Toast.LENGTH_LONG).show()
-        loadingBar?.visibility = View.GONE
-    }
-
-    private fun isLastItemDisplaying(recyclerView: RecyclerView): Boolean {
-        if (recyclerView.adapter?.itemCount != 0) {
-            val lastVisibleItemPosition = (recyclerView.layoutManager as GridLayoutManager).findLastCompletelyVisibleItemPosition()
-            if (lastVisibleItemPosition != RecyclerView.NO_POSITION &&
-                lastVisibleItemPosition == recyclerView.adapter?.itemCount?.minus(1)
-            )
-                return true
-        }
-        return false
     }
 }

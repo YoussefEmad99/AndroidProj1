@@ -61,7 +61,7 @@ object MovieRepository {
                     val movieList = appDatabase.getMovieDao().getMovieListById(idList)
                     // call database if available
                     if(movieList.isNotEmpty())
-                        callback.onMovieReady(appDatabase.getMovieDao().getMovie())
+                        callback.onMovieReady(movieList)
                 }
             })
     }
@@ -101,17 +101,23 @@ object MovieRepository {
                     //query main movie list using list of ids obtained
                     val movieList = appDatabase.getMovieDao().getMovieListById(idList)
                     if(movieList.isNotEmpty())
-                        callback.onMovieReady(appDatabase.getMovieDao().getMovie())
+                        callback.onMovieReady(movieList)
                 }
             })
     }
 
-    fun isMovieFav(id: Int): Boolean {
-        return appDatabase.getFavMovieDao().getFavMovieById(id) != null
+    fun getFavouriteMovieList(callback: MovieCallback, pageNum: Int){
+        val idList = appDatabase.getFavMovieDao().getFavMovies().map { it.movieId }
+
+        val movieList = appDatabase.getMovieDao().getMovieListById(idList)
+        if(movieList.isNotEmpty())
+            callback.onMovieReady(movieList)
+        else
+            callback.onMovieLoadingError("No favourites to display")
     }
 
-    fun getFavouriteMovieList(): List<Int>{
-        return appDatabase.getFavMovieDao().getFavMovies().map { it.movieId }
+    fun isMovieFav(id: Int): Boolean {
+        return appDatabase.getFavMovieDao().getFavMovieById(id) != null
     }
 
     fun addMovieFav(id: Int){

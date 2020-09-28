@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.androidproj1.Models.UI.UIMovie
-import com.example.androidproj1.recyclerview.MovieAdapter
 import com.example.androidproj1.repository.MovieRepository
 
 
@@ -36,7 +35,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
         MovieRepository.createDatabase(application)
     }
 
-    //Check this one
     fun loadMovie(loadFun: (MovieRepository.MovieCallback, Int) -> Unit) {
         if (movieData != null && !isConnected()) {
             onMovieLoadingError("Error requesting further movie data")

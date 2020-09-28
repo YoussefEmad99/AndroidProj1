@@ -39,7 +39,7 @@
         android:contentDescription="@string/refresh_movies"
         android:gravity="center"
         android:src="@drawable/ic_refresh"
-        app:layout_constraintBottom_toTopOf="@+id/main_bottom_bar"
+        app:layout_constraintBottom_toTopOf="@id/main_bottom_bar"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

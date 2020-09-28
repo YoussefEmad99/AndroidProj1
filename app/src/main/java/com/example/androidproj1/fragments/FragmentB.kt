@@ -1,7 +1,6 @@
 package com.example.androidproj1.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.R
-import com.example.androidproj1.UI.MainViewModel
 import com.example.androidproj1.UI.TopRatedViewModel
 import com.example.androidproj1.fragments.FragmentBDirections.Companion.actionFragmentBToDetailedPage
-import com.example.androidproj1.fragments.FragmentBDirections.Companion.actionFragmentBToFragmentA
 import com.example.androidproj1.recyclerview.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_a.*
 import kotlinx.android.synthetic.main.fragment_b.*
 
 class FragmentB : Fragment(){

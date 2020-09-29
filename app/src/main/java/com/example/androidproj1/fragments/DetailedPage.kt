@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.example.androidproj1.R
+import com.example.androidproj1.repository.MovieRepository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detailed_page.*
 import kotlinx.android.synthetic.main.fragment_detailed_page.view.*
@@ -50,13 +52,17 @@ class DetailedPage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        main_bottom_bar.visibility = View.GONE
-
+        val id = args.MovieDetailsTransfer.id
         val detailMovieName = args.MovieDetailsTransfer.movieName
         val detailMoviePopularity = args.MovieDetailsTransfer.popularity
         val movieimg = args.MovieDetailsTransfer.movieImage
+        val detailMovieDescription  = args.MovieDetailsTransfer.description
+        val release = args.MovieDetailsTransfer.date
 
+        textView7.text= release
         textView2.text = detailMovieName
         textView8.text = detailMoviePopularity
+        textView4.text = detailMovieDescription
         if (detailMoviePopularity.toFloat() < 4 ){
             textView8.setTextColor(Color.parseColor("#ff0e0e"))
         }
@@ -69,6 +75,18 @@ class DetailedPage : Fragment() {
         }
 
         imageView2.setImageDrawable(movieimg.drawable)
+        favButton.setOnClickListener{
+            if (!MovieRepository.isMovieFav(id)){
+                favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                MovieRepository.addMovieFav(id)
+                //Toast.makeText(itemView.context, "Added ${movieName.text} to favourites", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                MovieRepository.deleteMovieFav(id)
+                //Toast.makeText(itemView.context, "Removed ${movieName.text} from favourites", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     companion object {

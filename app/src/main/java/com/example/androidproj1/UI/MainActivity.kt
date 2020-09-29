@@ -1,55 +1,38 @@
 package com.example.androidproj1.UI
 
 import android.os.Bundle
-import android.view.View
-import androidx.activity.viewModels
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.androidproj1.Models.UI.UIMovie
+import androidx.navigation.findNavController
 import com.example.androidproj1.R
-import com.example.androidproj1.recyclerview.MovieAdapter
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_list.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
-    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val bottomNav: BottomNavigationView = findViewById(R.id.main_bottom_bar)
 
-        viewModel.movieLiveData.observe(this, Observer {
-            bindMovieData(it)
-        })
+//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        NavigationUI.setupWithNavController(bottomNav, navController)
 
-        viewModel.onError.observe(this, Observer {
-            handlingErr(it)
-        })
-
-        //load data and show indefinite loading progress bar
-        viewModel.loadMovie()
-        loading_bar.visibility = View.VISIBLE
-
-        fab.setOnClickListener {
-            viewModel.loadMovie(true)
-            loading_bar.visibility = View.VISIBLE
+        bottomNav.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.fragmentA -> {
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentA)
+                }
+                R.id.fragmentB -> {
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentB)
+                }
+                R.id.fragmentC -> {
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentC)
+                }
+            }
+            true
         }
-
-        movieRecycler.addItemDecoration(DividerItemDecoration(this,1))
     }
-
-    //Check the function of the button
-    private fun bindMovieData (movies: List<UIMovie>) {
-        movieRecycler.adapter = MovieAdapter(movies)
-        loading_bar.visibility = View.GONE
-    }
-
-    private fun handlingErr(errMsg: String){
-        Toast.makeText(this, errMsg, Toast.LENGTH_LONG).show()
-        loading_bar.visibility = View.GONE
-    }
-
 }

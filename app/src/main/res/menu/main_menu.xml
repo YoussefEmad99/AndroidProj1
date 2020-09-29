@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fragmentA"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/fragmentB"
+        android:icon="@android:drawable/stat_sys_upload_done"
+        android:title="@string/top_rated" />
+    <item
+        android:id="@+id/fragmentC"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/favourite" />
+</menu>

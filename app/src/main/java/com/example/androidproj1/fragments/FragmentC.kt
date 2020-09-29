@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_a.*
 
 class FragmentC : Fragment(){
 
-    private var recyclerState: Parcelable? = null
+//    private var recyclerState: Parcelable? = null
     private var loadingBar: ProgressBar? = null
 
     override fun onCreateView(
@@ -41,7 +41,7 @@ class FragmentC : Fragment(){
 
         viewModel.favoritesLiveData.observe(viewLifecycleOwner, Observer {
             bindMovieData(it, movieRecycler, loadingBar, ::actionFragmentCToDetailedPage)
-            movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
+//            movieRecycler.layoutManager?.onRestoreInstanceState(recyclerState)
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {

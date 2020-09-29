@@ -50,6 +50,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
 
     }
 
+    /**
+     * resets current page counter to 1 to reload from the beginning, this will incrementally delete previous movie data
+     * so it can be reloaded.
+     * used for when the reload button is clicked
+     */
+    fun resetEntries(){
+        currentPage = 1
+    }
+
     override fun onMovieReady(movies: List<UIMovie>, totalPageNum: Int) {
         //set number of total pages
         totalPages = totalPageNum

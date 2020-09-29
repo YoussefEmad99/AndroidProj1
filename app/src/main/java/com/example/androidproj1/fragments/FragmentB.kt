@@ -55,6 +55,9 @@ class FragmentB : Fragment() {
 
         activity?.fab?.setOnClickListener {
             loadingBar?.visibility = View.VISIBLE
+            //make Recycler state to null and reset current counter page to 1 so data can be refreshed
+            recyclerState = null
+            viewModel.resetEntries()
             viewModel.loadMovie(MovieRepository::requestTopRated)
         }
 

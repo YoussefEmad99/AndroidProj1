@@ -11,13 +11,41 @@
         android:label="Fragment A title"
         tools:layout="@layout/fragment_a">
         <action
-            android:id="@+id/action_fragmentA_to_fragmentB2"
-            app:destination="@id/fragmentB" />
+            android:id="@+id/action_fragmentA_to_detailedPage"
+            app:destination="@id/detailedPage"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentB"
         android:name="com.example.androidproj1.fragments.FragmentB"
         android:label="Fragment B title"
-        tools:layout="@layout/fragment_b" />
+        tools:layout="@layout/fragment_b">
+        <action
+            android:id="@+id/action_fragmentB_to_detailedPage"
+            app:destination="@id/detailedPage"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentC"
+        android:name="com.example.androidproj1.fragments.FragmentC"
+        android:label="fragment_c"
+        tools:layout="@layout/fragment_c">
+        <action
+            android:id="@+id/action_fragmentC_to_detailedPage"
+            app:destination="@id/detailedPage"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedPage"
+        android:name="com.example.androidproj1.fragments.DetailedPage"
+        android:label="fragment_detailed_page"
+        tools:layout="@layout/fragment_detailed_page">
+        <argument
+            android:name="MovieDetailsTransfer"
+            app:argType="com.example.androidproj1.fragments.MovieDetails" />
+    </fragment>
 </navigation>

@@ -1,27 +1,38 @@
 package com.example.androidproj1.UI
 
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.androidproj1.Models.UI.UIMovie
+import androidx.navigation.findNavController
 import com.example.androidproj1.R
-import com.example.androidproj1.recyclerview.MovieAdapter
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_a.*
-import kotlinx.android.synthetic.main.item_list.*
-
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
+        val bottomNav: BottomNavigationView = findViewById(R.id.main_bottom_bar)
 
+//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        NavigationUI.setupWithNavController(bottomNav, navController)
+
+        bottomNav.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.fragmentA -> {
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentA)
+                }
+                R.id.fragmentB -> {
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentB)
+                }
+                R.id.fragmentC -> {
+                    findNavController(R.id.main_container)
+                        .navigate(R.id.fragmentC)
+                }
+            }
+            true
+        }
+    }
 }

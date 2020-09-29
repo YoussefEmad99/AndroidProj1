@@ -30,7 +30,7 @@ class TopRatedViewModel(application: Application) : AndroidViewModel(application
         MovieRepository.requestTopRated(this, pageNum)
     }
 
-    override fun onMovieReady(movies: List<UIMovie>) {
+    override fun onMovieReady(movies: List<UIMovie>, totalPageNum: Int) {
         topRatedData = if(this::topRatedData.isInitialized)
             topRatedData + movies
         else

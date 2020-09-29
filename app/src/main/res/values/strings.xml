@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidProj1</string>
+    <string name="app_name">Movie Box</string>
 
     <string name="good_movie">Good movie</string>
 
@@ -30,4 +30,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_a" />
     <string name="fragment_b" />
+    <string name="fragment_c" />
+    <string name="fragment_detailed_page" />
+    <string name="release_date">Release Date</string>
+
+    <string name="genre">Genre</string>
+
+    <string name="vote_count">Vote Count</string>
+
+    <string name="age_range">Age Range</string>
+
+    <string name="overview">Overview</string>
+    <string name="favourite_button">Favourite Button</string>
 </resources>

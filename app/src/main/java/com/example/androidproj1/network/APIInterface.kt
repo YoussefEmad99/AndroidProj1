@@ -11,7 +11,7 @@ interface APIInterface {
         @Query("page") page: Int
     ) : Call<APIResponse>
 
-    @GET ("top_rated?")
+    @GET ("movie/top_rated?")
     fun getTopRated(
         @Query("api_key") apiKey:String,
         @Query("page") page: Int

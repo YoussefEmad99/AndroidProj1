@@ -106,13 +106,12 @@ object MovieRepository {
             })
     }
 
-    fun getFavouriteMovieList(callback: MovieCallback, pageNum: Int){
+    fun getFavouriteMovieList(callback: MovieCallback){
         val idList = appDatabase.getFavMovieDao().getFavMovies().map { it.movieId }
-
         val movieList = appDatabase.getMovieDao().getMovieListById(idList)
-        if(movieList.isNotEmpty())
-            callback.onMovieReady(movieList)
-        else
+
+        callback.onMovieReady(movieList)
+        if(movieList.isEmpty())
             callback.onMovieLoadingError("No favourites to display")
     }
 

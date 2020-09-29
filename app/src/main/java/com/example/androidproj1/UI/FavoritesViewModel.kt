@@ -21,8 +21,8 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
     val onError: LiveData<String>
         get() = _onError
 
-    fun loadMovie(pageNum: Int = 1){
-        MovieRepository.getFavouriteMovieList(this,pageNum)
+    fun loadMovie(){
+        MovieRepository.getFavouriteMovieList(this)
     }
 
     override fun onMovieReady(movies: List<UIMovie>, totalPageNum: Int) {

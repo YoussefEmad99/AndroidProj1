@@ -74,4 +74,9 @@ class FragmentA : Fragment() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        restoreState(activity?.fab)
+    }
 }

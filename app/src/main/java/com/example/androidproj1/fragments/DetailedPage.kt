@@ -51,7 +51,9 @@ class DetailedPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        main_bottom_bar.visibility = View.GONE
+        //make floating action button invisible as it is not needed in this activity
+        activity?.fab?.visibility = View.GONE
+
         val id = args.MovieDetailsTransfer.id
         val detailMovieName = args.MovieDetailsTransfer.movieName
         val detailMoviePopularity = args.MovieDetailsTransfer.popularity
@@ -85,6 +87,22 @@ class DetailedPage : Fragment() {
                 favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 MovieRepository.deleteMovieFav(id)
                 //Toast.makeText(itemView.context, "Removed ${movieName.text} from favourites", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        //if movie is favorited mark it as favorite
+        if(MovieRepository.isMovieFav(id)) favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+
+        favButton.setOnClickListener{
+            if (!MovieRepository.isMovieFav(id)){
+                favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                MovieRepository.addMovieFav(id)
+                Toast.makeText(context, "Added $detailMovieName to favourites",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                MovieRepository.deleteMovieFav(id)
+                Toast.makeText(context, "Removed $detailMovieName from favourites",Toast.LENGTH_SHORT).show()
             }
         }
     }

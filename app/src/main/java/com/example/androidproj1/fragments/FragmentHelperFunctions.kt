@@ -1,6 +1,7 @@
 package com.example.androidproj1.fragments
 
 import android.content.Context
+import android.os.Parcelable
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidproj1.Models.UI.UIMovie
 import com.example.androidproj1.recyclerview.MovieAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 fun bindMovieData(movies: List<UIMovie>, movieRecycler: RecyclerView, loadingBar: ProgressBar?,
                   actionFunction: (MovieDetails) -> NavDirections
@@ -31,4 +33,9 @@ fun isLastItemDisplaying(recyclerView: RecyclerView): Boolean {
             return true
     }
     return false
+}
+
+fun restoreState(fab: FloatingActionButton?){
+    fab?.visibility = View.VISIBLE
+//    recycler.layoutManager?.onRestoreInstanceState(recyclerState)
 }

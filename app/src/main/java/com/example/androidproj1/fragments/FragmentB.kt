@@ -30,8 +30,6 @@ class FragmentB : Fragment() {
         return inflater.inflate(R.layout.fragment_a, container, false)
     }
 
-    //TODO: For the fragemnt B that is the TopRated movies
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -72,4 +70,8 @@ class FragmentB : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        restoreState(activity?.fab)
+    }
 }

@@ -11,8 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.example.androidproj1.R
+ import com.example.androidproj1.R
 import com.example.androidproj1.UI.MainViewModel
 import com.example.androidproj1.fragments.FragmentCDirections.Companion.actionFragmentCToDetailedPage
 import com.example.androidproj1.repository.MovieRepository

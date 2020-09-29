@@ -46,12 +46,13 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var movieImage: ImageView = itemView.movieimage
     var progressBar: ProgressBar = itemView.progressBar
     var favButton: ImageButton = itemView.favButton
+    var id: Int = 0
 
     @SuppressLint("SetTextI18n")
     fun initialize(item: UIMovie, actionFunction: (MovieDetails) -> NavDirections) {
         movieName.text = item.title   //removed because of removing title (new design)
         movieDescription.text = "${item.popularity}"
-
+        id = item.id
         Picasso.get().load("$imageBaseUrl${item.imgPath}").into(movieImage)
         progressBar.progress = (item.popularity * 10).toInt()
 
@@ -60,7 +61,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
         movieImage.setOnClickListener {
-            val action = actionFunction(MovieDetails(item.title, item.popularity.toString(), movieImage))
+            val action = actionFunction(MovieDetails(item.title, item.popularity.toString(), movieImage, item.description, item.date, item.id))
             Navigation.findNavController(itemView).navigate(action)
         }
 

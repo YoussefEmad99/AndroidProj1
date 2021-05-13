@@ -1,7 +1,7 @@
-# AndroidProj1
-BESTEST ANDROID PROJECT OF ALL TIME
+# MovieBox
+An Android app that shows you most popular movies right now, or highest rated movies, providing you the ability to save your favourite movies and more!
 
-Members:
+Authors:
 
 Youssef Emad Saad
 

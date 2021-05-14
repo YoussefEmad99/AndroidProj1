@@ -3,7 +3,7 @@ An Android app that shows you most popular movies right now, or highest rated mo
 
 Authors:
 
-Youssef Emad Saad
+[@YoussefEmad](https://github.com/YoussefEmad99)
 
 Mahmoud Khaled Ahmed Mohamed
 
